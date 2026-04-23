@@ -97,15 +97,6 @@ export async function POST(request: Request) {
     const privateKeyRaw = process.env.GOOGLE_PRIVATE_KEY;
     const spreadsheetId = process.env.GOOGLE_SHEET_ID;
 
-    // 🔍 DEBUG: Ver qué llega de Vercel
-    console.log("🔍 DEBUG ENV:", {
-      hasClientEmail: !!clientEmail,
-      hasPrivateKey: !!privateKeyRaw,
-      privateKeyLength: privateKeyRaw?.length,
-      hasSpreadsheetId: !!spreadsheetId,
-      spreadsheetId,
-    });
-
     if (!clientEmail || !privateKeyRaw || !spreadsheetId) {
       return NextResponse.json(
         {
@@ -121,40 +112,15 @@ export async function POST(request: Request) {
       );
     }
 
-    // ✅ FIX: Normalizar la private key (maneja \n escapados y saltos reales)
+    // Normalizar la private key
     let privateKey = privateKeyRaw;
-
-    // Si tiene \n como texto literal (dos caracteres: \ y n), reemplazarlos
     if (privateKey.includes("\\n")) {
       privateKey = privateKey.replace(/\\n/g, "\n");
     }
 
-    // Verificar formato PEM
-    const hasHeader = privateKey.includes("-----BEGIN PRIVATE KEY-----");
-    const hasFooter = privateKey.includes("-----END PRIVATE KEY-----");
-
-    console.log("🔍 DEBUG KEY:", {
-      hasHeader,
-      hasFooter,
-      keyLength: privateKey.length,
-      firstChars: privateKey.substring(0, 30),
-      lastChars: privateKey.slice(-30),
-    });
-
-    if (!hasHeader || !hasFooter) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error: "GOOGLE_PRIVATE_KEY tiene formato inválido.",
-          details: { hasHeader, hasFooter },
-        },
-        { status: 500 }
-      );
-    }
-
     const rowValues = getRowValues(payload as RegistroPayload);
 
-    // ✅ Auth con authorize() explícito
+    // Auth
     const auth = new google.auth.JWT({
       email: clientEmail,
       key: privateKey,
@@ -165,20 +131,7 @@ export async function POST(request: Request) {
 
     const sheets = google.sheets({ version: "v4", auth });
 
-    // Verificar que la hoja existe
-    try {
-      await sheets.spreadsheets.get({ spreadsheetId });
-    } catch (sheetError: any) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error: "No se pudo acceder al Google Sheet.",
-          details: sheetError.message,
-        },
-        { status: 500 }
-      );
-    }
-
+    // ESCRIBIR DIRECTAMENTE (sin verificar primero)
     const result = await sheets.spreadsheets.values.append({
       spreadsheetId,
       range: SHEET_RANGE,
@@ -189,8 +142,6 @@ export async function POST(request: Request) {
       },
     });
 
-    console.log("✅ GUARDADO:", result.data.updates);
-
     return NextResponse.json({
       ok: true,
       message: "Registro guardado correctamente.",
@@ -198,12 +149,12 @@ export async function POST(request: Request) {
     });
 
   } catch (error: any) {
-    console.error("❌ ERROR:", error);
+    console.error("❌ ERROR COMPLETO:", error);
     return NextResponse.json(
       {
         ok: false,
         error: error.message || "Error desconocido",
-        type: error.constructor?.name,
+        details: error.response?.data || error,
       },
       { status: 500 }
     );
