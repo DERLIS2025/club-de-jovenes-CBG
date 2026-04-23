@@ -201,7 +201,7 @@ export default function BienvenidaPage() {
                 href="/registro"
                 className="inline-flex w-full items-center justify-center rounded-xl bg-sky-500 px-6 py-3 text-base font-semibold text-slate-950 transition-all duration-300 hover:scale-[1.02] hover:bg-sky-400 sm:w-auto"
               >
-                Continuar
+                Inscribirme al campamento
               </Link>
               <Link
                 href="/"
