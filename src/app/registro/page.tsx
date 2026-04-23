@@ -2,6 +2,7 @@
 
 import { ChangeEvent, FormEvent, useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type FormData = {
   nombre: string;
@@ -46,8 +47,8 @@ const initialForm: FormData = {
 };
 
 export default function RegistroPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState<FormData>(initialForm);
-  const [submitted, setSubmitted] = useState(false);
 
   const edadNumero = Number(formData.edad);
   const esMenor = useMemo(() => {
@@ -71,7 +72,7 @@ export default function RegistroPage() {
     e.preventDefault();
 
     console.log("Datos del registro:", formData);
-    setSubmitted(true);
+    router.push("/reglamento");
   }
 
   return (
@@ -93,40 +94,10 @@ export default function RegistroPage() {
           </p>
         </div>
 
-        {submitted ? (
-          <section className="rounded-3xl border border-emerald-400/25 bg-emerald-400/10 p-8 text-center shadow-lg">
-            <h2 className="text-2xl font-bold text-emerald-300">
-              Registro enviado correctamente
-            </h2>
-            <p className="mt-3 text-slate-200">
-              Tus datos fueron cargados. En el siguiente paso puedes conectar
-              este formulario a una base de datos, Google Sheets o WhatsApp.
-            </p>
-
-            <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <button
-                onClick={() => {
-                  setSubmitted(false);
-                  setFormData(initialForm);
-                }}
-                className="inline-flex items-center justify-center rounded-2xl bg-sky-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-sky-300"
-              >
-                Registrar otra persona
-              </button>
-
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center rounded-2xl border border-white/15 px-6 py-3 font-semibold text-white transition hover:bg-white/10"
-              >
-                Volver al inicio
-              </Link>
-            </div>
-          </section>
-        ) : (
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-8 rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-md sm:p-8"
-          >
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-8 rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-md sm:p-8"
+        >
             <section>
               <h2 className="text-2xl font-bold text-white">
                 Datos personales
@@ -362,8 +333,7 @@ export default function RegistroPage() {
                 Enviar registro
               </button>
             </div>
-          </form>
-        )}
+        </form>
       </div>
     </main>
   );
