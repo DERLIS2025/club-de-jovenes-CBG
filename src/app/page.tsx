@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const BACKGROUND_IMAGE_URL =
-  "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1920&q=80";
+const BACKGROUND_IMAGE_URL = "/campamento-bg.jpg";
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,13 +15,13 @@ export default function HomePage() {
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 text-white">
       <div
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${BACKGROUND_IMAGE_URL})` }}
         aria-hidden="true"
       />
 
       <div
-        className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/65 to-slate-950/85"
+        className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/45 to-black/80"
         aria-hidden="true"
       />
 
@@ -32,7 +31,7 @@ export default function HomePage() {
         }`}
       >
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-sky-200/80 sm:text-base">
-         Club de Jovenes CBG
+          Club de Jóvenes CBG
         </p>
 
         <h1 className="text-5xl font-extrabold leading-tight drop-shadow-[0_8px_28px_rgba(0,0,0,0.7)] sm:text-6xl md:text-7xl lg:text-8xl">
@@ -40,7 +39,7 @@ export default function HomePage() {
         </h1>
 
         <p className="mt-4 max-w-2xl text-base font-medium text-slate-100/90 sm:text-xl md:text-2xl">
-          “Tiempo con propósito”
+          Tiempo con propósito
         </p>
 
         <Link
