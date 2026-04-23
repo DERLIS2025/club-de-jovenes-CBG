@@ -2,6 +2,7 @@
 
 import { ChangeEvent, FormEvent, useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type FormData = {
   nombre: string;
@@ -46,8 +47,10 @@ const initialForm: FormData = {
 };
 
 export default function RegistroPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState<FormData>(initialForm);
-  const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const edadNumero = Number(formData.edad);
   const esMenor = useMemo(() => {
@@ -67,11 +70,41 @@ export default function RegistroPage() {
     }));
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setSubmitError("");
+    setIsSubmitting(true);
 
-    console.log("Datos del registro:", formData);
-    setSubmitted(true);
+    try {
+      const response = await fetch("/api/registro", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorPayload = (await response.json().catch(() => null)) as
+          | { error?: string }
+          | null;
+
+        setSubmitError(
+          errorPayload?.error ??
+            "No se pudo guardar tu registro. Inténtalo nuevamente."
+        );
+        return;
+      }
+
+      router.push("/reglamento");
+    } catch (error) {
+      console.error("Error al enviar registro:", error);
+      setSubmitError(
+        "No se pudo conectar con el servidor. Revisa tu conexión e inténtalo de nuevo."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -93,40 +126,10 @@ export default function RegistroPage() {
           </p>
         </div>
 
-        {submitted ? (
-          <section className="rounded-3xl border border-emerald-400/25 bg-emerald-400/10 p-8 text-center shadow-lg">
-            <h2 className="text-2xl font-bold text-emerald-300">
-              Registro enviado correctamente
-            </h2>
-            <p className="mt-3 text-slate-200">
-              Tus datos fueron cargados. En el siguiente paso puedes conectar
-              este formulario a una base de datos, Google Sheets o WhatsApp.
-            </p>
-
-            <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <button
-                onClick={() => {
-                  setSubmitted(false);
-                  setFormData(initialForm);
-                }}
-                className="inline-flex items-center justify-center rounded-2xl bg-sky-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-sky-300"
-              >
-                Registrar otra persona
-              </button>
-
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center rounded-2xl border border-white/15 px-6 py-3 font-semibold text-white transition hover:bg-white/10"
-              >
-                Volver al inicio
-              </Link>
-            </div>
-          </section>
-        ) : (
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-8 rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-md sm:p-8"
-          >
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-8 rounded-[2rem] border border-white/10 bg-white/5 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-md sm:p-8"
+        >
             <section>
               <h2 className="text-2xl font-bold text-white">
                 Datos personales
@@ -348,6 +351,12 @@ export default function RegistroPage() {
             </section>
 
             <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 sm:flex-row">
+              {submitError && (
+                <p className="w-full rounded-2xl border border-red-400/30 bg-red-500/10 px-4 py-3 text-sm text-red-200 sm:order-last sm:w-auto">
+                  {submitError}
+                </p>
+              )}
+
               <Link
                 href="/bienvenida"
                 className="inline-flex items-center justify-center rounded-2xl border border-white/15 px-6 py-3 font-semibold text-white transition hover:bg-white/10"
@@ -357,13 +366,13 @@ export default function RegistroPage() {
 
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="inline-flex items-center justify-center rounded-2xl bg-sky-400 px-8 py-3 font-bold text-slate-950 shadow-[0_12px_28px_rgba(56,189,248,0.28)] transition hover:-translate-y-0.5 hover:bg-sky-300"
               >
-                Enviar registro
+                {isSubmitting ? "Enviando..." : "Enviar registro"}
               </button>
             </div>
-          </form>
-        )}
+        </form>
       </div>
     </main>
   );
