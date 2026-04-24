@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
+import Countdown from "@/components/Countdown";
 
 /* ─── CBG Brand Colors ─── */
 const CBG = {
@@ -24,6 +25,7 @@ type Remera = {
   descripcion: string;
   precio: number;
   ref: string;
+  imagen: string;
   tono: string;
 };
 
@@ -48,6 +50,7 @@ const REMERAS: Remera[] = [
     descripcion: "Diseño clásico del campamento en base clara.",
     precio: 100000,
     ref: "CBG-REM-01",
+    imagen: "/remera-blanca.jpg",
     tono: "bg-stone-100",
   },
   {
@@ -56,6 +59,7 @@ const REMERAS: Remera[] = [
     descripcion: "Versión premium en negro con detalles del evento.",
     precio: 100000,
     ref: "CBG-REM-02",
+    imagen: "/remera-negra.jpg",
     tono: "bg-stone-800",
   },
   {
@@ -64,6 +68,7 @@ const REMERAS: Remera[] = [
     descripcion: "Modelo especial por color de equipo.",
     precio: 100000,
     ref: "CBG-REM-03",
+    imagen: "/remera-equipo.jpg",
     tono: "bg-emerald-600",
   },
 ];
@@ -97,35 +102,48 @@ function formatPrice(gs: number): string {
 
 function HeroBanner() {
   return (
-    <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden sm:h-[70vh]" style={{ backgroundColor: CBG.navy }}>
-      <div className="absolute inset-0 bg-black/20" />
-      <div className="relative flex h-full items-center">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70">
-              Campamento CBG 2026
+    <section className="relative h-auto min-h-[500px] w-full overflow-hidden sm:min-h-[600px]" style={{ backgroundColor: CBG.navy }}>
+      {/* Background image - replace with real image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        style={{ backgroundImage: "url(/campamento-hero.jpg)" }}
+      />
+      <div className="absolute inset-0 bg-black/30" />
+
+      <div className="relative flex h-full min-h-[500px] flex-col items-center justify-center py-16 sm:min-h-[600px]">
+        <div className="mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70">
+            Campamento CBG 2026
+          </p>
+          <h1 className="mt-4 font-serif text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+            Tiempo con propósito
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
+            Un campamento diseñado para escuchar la Palabra de Dios, fortalecer la comunión y vivir una experiencia centrada en Cristo.
+          </p>
+
+          {/* ⏱️ COUNTDOWN */}
+          <div className="mt-10">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
+              Faltan para el campamento
             </p>
-            <h1 className="mt-4 font-serif text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-              Tiempo con propósito
-            </h1>
-            <p className="mt-4 text-base leading-relaxed text-white/80 sm:text-lg">
-              Un campamento diseñado para escuchar la Palabra de Dios, fortalecer la comunión y vivir una experiencia centrada en Cristo.
-            </p>
-            <div className="mt-8 flex gap-4">
-              <Link
-                href="/registro"
-                className="inline-flex items-center justify-center rounded-sm bg-white px-8 py-3 text-sm font-semibold uppercase tracking-wider transition hover:bg-white/90"
-                style={{ color: CBG.navy }}
-              >
-                Registrarme
-              </Link>
-              <Link
-                href="/reglamento"
-                className="inline-flex items-center justify-center rounded-sm border border-white/40 px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/10"
-              >
-                Leer reglamento
-              </Link>
-            </div>
+            <Countdown />
+          </div>
+
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Link
+              href="/registro"
+              className="inline-flex items-center justify-center rounded-sm bg-white px-8 py-3 text-sm font-semibold uppercase tracking-wider transition hover:bg-white/90"
+              style={{ color: CBG.navy }}
+            >
+              Registrarme
+            </Link>
+            <Link
+              href="/reglamento"
+              className="inline-flex items-center justify-center rounded-sm border border-white/40 px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/10"
+            >
+              Leer reglamento
+            </Link>
           </div>
         </div>
       </div>
