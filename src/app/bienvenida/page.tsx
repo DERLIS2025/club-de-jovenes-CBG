@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import Header from "@/components/Header";
 
 const BACKGROUND_IMAGE_URL = "/bienvenida-bg.jpg";
 
@@ -9,8 +10,6 @@ const BACKGROUND_IMAGE_URL = "/bienvenida-bg.jpg";
 const CBG = {
   navy: "#1e3a5c",
   gold: "#b8860b",
-  white: "#ffffff",
-  cream: "#f8f6f1",
 };
 
 type RevealProps = {
@@ -93,115 +92,110 @@ const secondaryObjectives = [
 
 export default function BienvenidaPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden text-slate-100">
+    <div className="min-h-screen">
+      <Header />
+      <main className="relative min-h-screen overflow-hidden text-slate-100">
+        {/* 🔥 IMAGEN DE FONDO */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${BACKGROUND_IMAGE_URL})` }}
+        />
 
-      {/* 🔥 IMAGEN DE FONDO */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${BACKGROUND_IMAGE_URL})` }}
-      />
+        {/* 🔥 OVERLAY OSCURO PRO */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
 
-      {/* 🔥 OVERLAY OSCURO PRO */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
-
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 py-14 sm:px-10 sm:py-20">
-
-        <Reveal className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/70 sm:text-sm">
-            Jóvenes de CBG
-          </p>
-
-          <h1 className="mt-6 text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
-            Bienvenidos al Campamento 2026
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-slate-200 sm:text-lg">
-            Un espacio preparado para escuchar la Palabra de Dios, examinar la
-            fe y responder con arrepentimiento genuino.
-          </p>
-        </Reveal>
-
-        <Reveal>
-          <section className="rounded-3xl border border-white/10 bg-black/40 p-8 shadow-2xl backdrop-blur-md sm:p-10">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em]" style={{ color: CBG.gold }}>
-              Objetivo principal
+        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 py-14 sm:px-10 sm:py-20">
+          <Reveal className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/70 sm:text-sm">
+              Jóvenes de CBG
             </p>
 
-            <p className="mt-5 text-lg text-slate-100 sm:text-xl">
-              Exponer a cada acampante al evangelio de Jesucristo.
+            <h1 className="mt-6 text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
+              Bienvenidos al Campamento 2026
+            </h1>
+
+            <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-slate-200 sm:text-lg">
+              Un espacio preparado para escuchar la Palabra de Dios, examinar la
+              fe y responder con arrepentimiento genuino.
             </p>
-
-            <blockquote className="mt-8 rounded-2xl border px-6 py-5 text-center" style={{ borderColor: CBG.gold, backgroundColor: "rgba(30,58,92,0.6)" }}>
-              <p className="text-lg font-semibold text-white">
-                &ldquo;Examinaos a vosotros mismos si estáis en la fe.&rdquo;
-              </p>
-              <footer className="mt-2 text-sm text-white/70">
-                1 Corintios 13:5
-              </footer>
-            </blockquote>
-          </section>
-        </Reveal>
-
-        <section>
-          <Reveal>
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-white">
-                Objetivos específicos
-              </h2>
-            </div>
           </Reveal>
 
-          <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
-            {secondaryObjectives.map((obj, index) => (
-              <Reveal key={obj.title} delay={index * 100}>
-                <article className="rounded-2xl border border-white/10 bg-black/40 p-6 backdrop-blur-md transition hover:-translate-y-1 hover:shadow-xl">
-                  <div className="flex items-center gap-3">
-                    <span className="text-lg">{obj.icon}</span>
-                    <span className="text-sm" style={{ color: CBG.gold }}>
-                      {index + 1}
-                    </span>
-                  </div>
+          <Reveal>
+            <section className="rounded-3xl border border-white/10 bg-black/40 p-8 shadow-2xl backdrop-blur-md sm:p-10">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em]" style={{ color: CBG.gold }}>
+                Objetivo principal
+              </p>
 
-                  <h3 className="mt-4 text-xl text-white">
-                    {obj.title}
-                  </h3>
+              <p className="mt-5 text-lg text-slate-100 sm:text-xl">
+                Exponer a cada acampante al evangelio de Jesucristo.
+              </p>
 
-                  <p className="mt-3 text-sm text-slate-300">
-                    {obj.description}
-                  </p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </section>
+              <blockquote className="mt-8 rounded-2xl border px-6 py-5 text-center" style={{ borderColor: CBG.gold, backgroundColor: "rgba(30,58,92,0.6)" }}>
+                <p className="text-lg font-semibold text-white">
+                  &ldquo;Examinaos a vosotros mismos si estáis en la fe.&rdquo;
+                </p>
+                <footer className="mt-2 text-sm text-white/70">
+                  1 Corintios 13:5
+                </footer>
+              </blockquote>
+            </section>
+          </Reveal>
 
-        <Reveal>
-          <section className="rounded-3xl border border-white/10 bg-black/40 p-8 text-center backdrop-blur-md">
-            <h2 className="text-2xl font-bold text-white">
-              Sigamos adelante con propósito
-            </h2>
+          <section>
+            <Reveal>
+              <div className="text-center">
+                <h2 className="text-3xl font-bold text-white">
+                  Objetivos específicos
+                </h2>
+              </div>
+            </Reveal>
 
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row justify-center">
-              {/* 🔥 BOTÓN PRINCIPAL ACTUALIZADO */}
-              <Link
-                href="/campamento"
-                className="rounded-xl px-8 py-4 text-lg font-bold text-white shadow-lg transition hover:scale-105 hover:opacity-90"
-                style={{ backgroundColor: CBG.navy }}
-              >
-                Ver información del campamento
-              </Link>
+            <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
+              {secondaryObjectives.map((obj, index) => (
+                <Reveal key={obj.title} delay={index * 100}>
+                  <article className="rounded-2xl border border-white/10 bg-black/40 p-6 backdrop-blur-md transition hover:-translate-y-1 hover:shadow-xl">
+                    <div className="flex items-center gap-3">
+                      <span className="text-lg">{obj.icon}</span>
+                      <span className="text-sm" style={{ color: CBG.gold }}>
+                        {index + 1}
+                      </span>
+                    </div>
 
-              <Link
-                href="/"
-                className="rounded-xl border border-slate-500 px-6 py-3 text-white hover:bg-slate-800 transition"
-              >
-                Volver
-              </Link>
+                    <h3 className="mt-4 text-xl text-white">{obj.title}</h3>
+
+                    <p className="mt-3 text-sm text-slate-300">{obj.description}</p>
+                  </article>
+                </Reveal>
+              ))}
             </div>
           </section>
-        </Reveal>
 
-      </div>
-    </main>
+          <Reveal>
+            <section className="rounded-3xl border border-white/10 bg-black/40 p-8 text-center backdrop-blur-md">
+              <h2 className="text-2xl font-bold text-white">
+                Sigamos adelante con propósito
+              </h2>
+
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row justify-center">
+                <Link
+                  href="/campamento"
+                  className="rounded-xl px-8 py-4 text-lg font-bold text-white shadow-lg transition hover:scale-105 hover:opacity-90"
+                  style={{ backgroundColor: CBG.navy }}
+                >
+                  Ver información del campamento
+                </Link>
+
+                <Link
+                  href="/"
+                  className="rounded-xl border border-slate-500 px-6 py-3 text-white hover:bg-slate-800 transition"
+                >
+                  Volver
+                </Link>
+              </div>
+            </section>
+          </Reveal>
+        </div>
+      </main>
+    </div>
   );
 }
