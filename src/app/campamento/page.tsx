@@ -102,35 +102,11 @@ function formatPrice(gs: number): string {
 function HeroBanner() {
   return (
     <section className="relative h-[40vh] min-h-[280px] w-full overflow-hidden sm:h-[55vh] sm:min-h-[400px] lg:h-[65vh] lg:min-h-[500px]">
-      {/* Full background image - mobile optimized */}
+      {/* Full background image - no overlays, no buttons */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url(/campamento-hero.jpg)" }}
       />
-      {/* Bottom gradient for buttons readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-      {/* Buttons at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 pb-4 sm:pb-6 lg:pb-10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-3 px-4 sm:px-6 lg:px-8">
-          {/* Buttons - stack on mobile, side by side on desktop */}
-          <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:gap-4">
-            <Link
-              href="/registro"
-              className="inline-flex items-center justify-center rounded-sm bg-white px-6 py-2.5 text-xs font-semibold uppercase tracking-wider transition hover:bg-white/90 sm:px-8 sm:py-3 sm:text-sm"
-              style={{ color: CBG.navy }}
-            >
-              Registrarme
-            </Link>
-            <Link
-              href="/reglamento"
-              className="inline-flex items-center justify-center rounded-sm border border-white/60 px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-white/10 sm:px-8 sm:py-3 sm:text-sm"
-            >
-              Leer reglamento
-            </Link>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
