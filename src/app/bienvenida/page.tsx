@@ -95,7 +95,7 @@ export default function BienvenidaPage() {
       <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 py-14 sm:px-10 sm:py-20">
         <Reveal className="text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-200/80 sm:text-sm">
-            Club de Jóvenes CBG
+            Jóvenes de CBG
           </p>
 
           <h1 className="mt-6 text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
