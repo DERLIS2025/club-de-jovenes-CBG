@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "jovenes_de_CBG.com",
+  title: "JÓVENES DE C.B.G",
   description: "Campamento 2026 - Jóvenes de C.B.G"
 };
 
