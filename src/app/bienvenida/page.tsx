@@ -5,6 +5,14 @@ import { useEffect, useRef, useState } from "react";
 
 const BACKGROUND_IMAGE_URL = "/bienvenida-bg.jpg";
 
+/* ─── CBG Brand Colors ─── */
+const CBG = {
+  navy: "#1e3a5c",
+  gold: "#b8860b",
+  white: "#ffffff",
+  cream: "#f8f6f1",
+};
+
 type RevealProps = {
   children: React.ReactNode;
   className?: string;
@@ -17,9 +25,7 @@ function Reveal({ children, className = "", delay = 0 }: RevealProps) {
 
   useEffect(() => {
     const node = ref.current;
-
     if (!node) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -29,9 +35,7 @@ function Reveal({ children, className = "", delay = 0 }: RevealProps) {
       },
       { threshold: 0.15 }
     );
-
     observer.observe(node);
-
     return () => observer.disconnect();
   }, []);
 
@@ -103,7 +107,7 @@ export default function BienvenidaPage() {
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 py-14 sm:px-10 sm:py-20">
 
         <Reveal className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-200/80 sm:text-sm">
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/70 sm:text-sm">
             Jóvenes de CBG
           </p>
 
@@ -119,7 +123,7 @@ export default function BienvenidaPage() {
 
         <Reveal>
           <section className="rounded-3xl border border-white/10 bg-black/40 p-8 shadow-2xl backdrop-blur-md sm:p-10">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-200">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em]" style={{ color: CBG.gold }}>
               Objetivo principal
             </p>
 
@@ -127,11 +131,11 @@ export default function BienvenidaPage() {
               Exponer a cada acampante al evangelio de Jesucristo.
             </p>
 
-            <blockquote className="mt-8 rounded-2xl border border-sky-200/30 bg-slate-900/60 px-6 py-5 text-center">
-              <p className="text-lg font-semibold text-sky-100">
-                “Examinaos a vosotros mismos si estáis en la fe.”
+            <blockquote className="mt-8 rounded-2xl border px-6 py-5 text-center" style={{ borderColor: CBG.gold, backgroundColor: "rgba(30,58,92,0.6)" }}>
+              <p className="text-lg font-semibold text-white">
+                &ldquo;Examinaos a vosotros mismos si estáis en la fe.&rdquo;
               </p>
-              <footer className="mt-2 text-sm text-sky-200/80">
+              <footer className="mt-2 text-sm text-white/70">
                 1 Corintios 13:5
               </footer>
             </blockquote>
@@ -153,7 +157,7 @@ export default function BienvenidaPage() {
                 <article className="rounded-2xl border border-white/10 bg-black/40 p-6 backdrop-blur-md transition hover:-translate-y-1 hover:shadow-xl">
                   <div className="flex items-center gap-3">
                     <span className="text-lg">{obj.icon}</span>
-                    <span className="text-sm text-sky-200">
+                    <span className="text-sm" style={{ color: CBG.gold }}>
                       {index + 1}
                     </span>
                   </div>
@@ -178,11 +182,13 @@ export default function BienvenidaPage() {
             </h2>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row justify-center">
+              {/* 🔥 BOTÓN PRINCIPAL ACTUALIZADO */}
               <Link
-                href="/registro"
-                className="rounded-xl bg-sky-500 px-6 py-3 font-semibold text-slate-950 hover:bg-sky-400 transition"
+                href="/campamento"
+                className="rounded-xl px-8 py-4 text-lg font-bold text-white shadow-lg transition hover:scale-105 hover:opacity-90"
+                style={{ backgroundColor: CBG.navy }}
               >
-                Inscribirme
+                Ver información del campamento
               </Link>
 
               <Link
