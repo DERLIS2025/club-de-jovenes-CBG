@@ -31,7 +31,7 @@ export default function HomePage() {
         }`}
       >
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-sky-200/80 sm:text-base">
-          Club de Jóvenes CBG
+          Jóvenes de C.B.G
         </p>
 
         <h1 className="text-5xl font-extrabold leading-tight drop-shadow-[0_8px_28px_rgba(0,0,0,0.7)] sm:text-6xl md:text-7xl lg:text-8xl">
