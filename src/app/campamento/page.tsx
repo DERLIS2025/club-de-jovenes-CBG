@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ReactNode, useEffect, useRef, useState } from "react";
+import Header from "@/components/Header";
 
 /* ─── CBG Brand Colors ─── */
 const CBG = {
@@ -93,31 +94,6 @@ function formatPrice(gs: number): string {
 }
 
 /* ─── Components ─── */
-
-function Header() {
-  return (
-    <header className="sticky top-0 z-50 border-b border-[#e5e5e5] bg-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="/" className="font-serif text-xl font-bold tracking-tight" style={{ color: CBG.navy }}>
-          JÓVENES CBG
-        </Link>
-        <nav className="hidden gap-8 text-sm font-medium uppercase tracking-wider sm:flex" style={{ color: CBG.textMuted }}>
-          <Link href="/bienvenida" className="hover:text-[#1e3a5c]">Inicio</Link>
-          <Link href="/campamento" className="font-semibold" style={{ color: CBG.navy }}>Campamento</Link>
-          <Link href="/registro" className="hover:text-[#1e3a5c]">Registro</Link>
-          <Link href="/reglamento" className="hover:text-[#1e3a5c]">Reglamento</Link>
-        </nav>
-        <Link
-          href="/registro"
-          className="rounded-sm px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white transition hover:opacity-90"
-          style={{ backgroundColor: CBG.navy }}
-        >
-          Inscribirme
-        </Link>
-      </div>
-    </header>
-  );
-}
 
 function HeroBanner() {
   return (
