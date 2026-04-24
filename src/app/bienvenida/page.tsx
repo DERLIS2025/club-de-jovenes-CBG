@@ -142,7 +142,7 @@ export default function BienvenidaPage() {
           <Reveal>
             <div className="text-center">
               <h2 className="text-3xl font-bold text-white sm:text-4xl">
-                Objetivos secundarios
+                Objetivos específicos
               </h2>
               <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
                 Enfoques prácticos para que cada joven crezca en fe, comunión y
