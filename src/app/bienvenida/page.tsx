@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
+const BACKGROUND_IMAGE_URL = "/bienvenida-bg.jpg";
+
 type RevealProps = {
   children: React.ReactNode;
   className?: string;
@@ -16,9 +18,7 @@ function Reveal({ children, className = "", delay = 0 }: RevealProps) {
   useEffect(() => {
     const node = ref.current;
 
-    if (!node) {
-      return;
-    }
+    if (!node) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -82,17 +82,26 @@ const secondaryObjectives = [
   {
     title: "Facilitar relaciones sanas y edificantes",
     description:
-      "Propiciar un ambiente donde surjan amistades genuinas y relaciones que honren a Dios, ya sea en la forma de amistad bíblica o, si el Señor lo permite, vínculos orientados al matrimonio.",
+      "Propiciar un ambiente donde surjan amistades genuinas y relaciones que honren a Dios.",
     icon: "🌱",
   },
 ];
 
 export default function BienvenidaPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(56,189,248,0.15),transparent_45%),radial-gradient(circle_at_85%_0%,rgba(15,23,42,0.65),transparent_40%)]" />
+    <main className="relative min-h-screen overflow-hidden text-slate-100">
 
-      <div className="relative mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 py-14 sm:px-10 sm:py-20">
+      {/* 🔥 IMAGEN DE FONDO */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${BACKGROUND_IMAGE_URL})` }}
+      />
+
+      {/* 🔥 OVERLAY OSCURO PRO */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90" />
+
+      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-16 px-6 py-14 sm:px-10 sm:py-20">
+
         <Reveal className="text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.35em] text-sky-200/80 sm:text-sm">
             Jóvenes de CBG
@@ -104,34 +113,25 @@ export default function BienvenidaPage() {
 
           <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-slate-200 sm:text-lg">
             Un espacio preparado para escuchar la Palabra de Dios, examinar la
-            fe que profesamos y responder con arrepentimiento genuino y fe
-            activa.
+            fe y responder con arrepentimiento genuino.
           </p>
         </Reveal>
 
         <Reveal>
-          <section className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-slate-900/40 backdrop-blur-sm sm:p-10">
+          <section className="rounded-3xl border border-white/10 bg-black/40 p-8 shadow-2xl backdrop-blur-md sm:p-10">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-200">
               Objetivo principal
             </p>
 
-            <p className="mt-5 text-lg leading-relaxed text-slate-100 sm:text-xl">
+            <p className="mt-5 text-lg text-slate-100 sm:text-xl">
               Exponer a cada acampante al evangelio de Jesucristo.
             </p>
 
-            <p className="mt-5 text-base leading-relaxed text-slate-300 sm:text-lg">
-              Por medio de una confrontación clara en los materiales, en el
-              trato personal, en los acercamientos y en el testimonio coherente
-              de todo el campamento, buscamos que cada participante examine la
-              autenticidad de su fe, evalúe sus convicciones y responda con
-              arrepentimiento genuino y fe activa.
-            </p>
-
             <blockquote className="mt-8 rounded-2xl border border-sky-200/30 bg-slate-900/60 px-6 py-5 text-center">
-              <p className="text-lg font-semibold text-sky-100 sm:text-xl">
+              <p className="text-lg font-semibold text-sky-100">
                 “Examinaos a vosotros mismos si estáis en la fe.”
               </p>
-              <footer className="mt-2 text-sm font-medium uppercase tracking-[0.15em] text-sky-200/80">
+              <footer className="mt-2 text-sm text-sky-200/80">
                 1 Corintios 13:5
               </footer>
             </blockquote>
@@ -141,45 +141,30 @@ export default function BienvenidaPage() {
         <section>
           <Reveal>
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="text-3xl font-bold text-white">
                 Objetivos específicos
               </h2>
-              <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
-                Enfoques prácticos para que cada joven crezca en fe, comunión y
-                compromiso diario con Cristo.
-              </p>
             </div>
           </Reveal>
 
           <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
-            {secondaryObjectives.map((objective, index) => (
-              <Reveal key={objective.title} delay={index * 90}>
-                <article className="h-full rounded-2xl border border-white/10 bg-slate-900/65 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/60">
+            {secondaryObjectives.map((obj, index) => (
+              <Reveal key={obj.title} delay={index * 100}>
+                <article className="rounded-2xl border border-white/10 bg-black/40 p-6 backdrop-blur-md transition hover:-translate-y-1 hover:shadow-xl">
                   <div className="flex items-center gap-3">
-                    <span
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-sky-300/15 text-lg"
-                      aria-hidden="true"
-                    >
-                      {objective.icon}
-                    </span>
-                    <span className="text-sm font-semibold text-sky-200">
+                    <span className="text-lg">{obj.icon}</span>
+                    <span className="text-sm text-sky-200">
                       {index + 1}
                     </span>
                   </div>
 
-                  <h3 className="mt-4 text-xl font-semibold leading-snug text-white">
-                    {objective.title}
+                  <h3 className="mt-4 text-xl text-white">
+                    {obj.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-300 sm:text-base">
-                    {objective.description}
-                  </p>
 
-                  {index === 4 ? (
-                    <p className="mt-4 rounded-xl bg-slate-800/70 px-4 py-3 text-sm font-medium text-slate-200">
-                      En otras palabras, que la fe que profesen sea real en su
-                      día a día.
-                    </p>
-                  ) : null}
+                  <p className="mt-3 text-sm text-slate-300">
+                    {obj.description}
+                  </p>
                 </article>
               </Reveal>
             ))}
@@ -187,31 +172,29 @@ export default function BienvenidaPage() {
         </section>
 
         <Reveal>
-          <section className="rounded-3xl border border-white/10 bg-white/5 p-8 text-center shadow-2xl shadow-slate-900/40 sm:p-10">
-            <h2 className="text-2xl font-bold text-white sm:text-3xl">
+          <section className="rounded-3xl border border-white/10 bg-black/40 p-8 text-center backdrop-blur-md">
+            <h2 className="text-2xl font-bold text-white">
               Sigamos adelante con propósito
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
-              Estamos orando para que este campamento produzca fruto duradero en
-              cada vida.
-            </p>
 
-            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row justify-center">
               <Link
                 href="/registro"
-                className="inline-flex w-full items-center justify-center rounded-xl bg-sky-500 px-6 py-3 text-base font-semibold text-slate-950 transition-all duration-300 hover:scale-[1.02] hover:bg-sky-400 sm:w-auto"
+                className="rounded-xl bg-sky-500 px-6 py-3 font-semibold text-slate-950 hover:bg-sky-400 transition"
               >
-                Inscribirme al campamento
+                Inscribirme
               </Link>
+
               <Link
                 href="/"
-                className="inline-flex w-full items-center justify-center rounded-xl border border-slate-500/50 px-6 py-3 text-base font-semibold text-slate-100 transition-all duration-300 hover:scale-[1.02] hover:border-slate-300/70 hover:bg-slate-800/80 sm:w-auto"
+                className="rounded-xl border border-slate-500 px-6 py-3 text-white hover:bg-slate-800 transition"
               >
-                Volver al inicio
+                Volver
               </Link>
             </div>
           </section>
         </Reveal>
+
       </div>
     </main>
   );
