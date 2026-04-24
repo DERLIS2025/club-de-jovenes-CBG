@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "club_de_jovenes_CBG.com",
-  description: "Campamento 2026 - Club de Jóvenes C.B.G"
+  title: "jovenes_de_CBG.com",
+  description: "Campamento 2026 - Jóvenes de C.B.G"
 };
 
 type RootLayoutProps = {
