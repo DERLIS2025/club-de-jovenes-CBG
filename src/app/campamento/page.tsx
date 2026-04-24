@@ -101,41 +101,31 @@ function formatPrice(gs: number): string {
 
 function HeroBanner() {
   return (
-    <section className="relative h-auto min-h-[500px] w-full overflow-hidden sm:min-h-[600px]" style={{ backgroundColor: CBG.navy }}>
-      {/* Background image - replace with real image */}
+    <section className="relative h-[50vh] min-h-[350px] w-full overflow-hidden sm:h-[60vh] sm:min-h-[450px]">
+      {/* Full background image - no overlay text */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url(/campamento-hero.jpg)" }}
       />
-      <div className="absolute inset-0 bg-black/30" />
+      {/* Subtle bottom gradient for buttons readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-      <div className="relative flex h-full min-h-[500px] flex-col items-center justify-center py-16 sm:min-h-[600px]">
-        <div className="mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70">
-            Campamento CBG 2026
-          </p>
-          <h1 className="mt-4 font-serif text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-            Tiempo con propósito
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
-            Un campamento diseñado para escuchar la Palabra de Dios, fortalecer la comunión y vivir una experiencia centrada en Cristo.
-          </p>
-
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Link
-              href="/registro"
-              className="inline-flex items-center justify-center rounded-sm bg-white px-8 py-3 text-sm font-semibold uppercase tracking-wider transition hover:bg-white/90"
-              style={{ color: CBG.navy }}
-            >
-              Registrarme
-            </Link>
-            <Link
-              href="/reglamento"
-              className="inline-flex items-center justify-center rounded-sm border border-white/40 px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/10"
-            >
-              Leer reglamento
-            </Link>
-          </div>
+      {/* Buttons at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 pb-8 sm:pb-12">
+        <div className="mx-auto flex max-w-7xl justify-center gap-4 px-4 sm:px-6 lg:px-8">
+          <Link
+            href="/registro"
+            className="inline-flex items-center justify-center rounded-sm bg-white px-8 py-3 text-sm font-semibold uppercase tracking-wider transition hover:bg-white/90"
+            style={{ color: CBG.navy }}
+          >
+            Registrarme
+          </Link>
+          <Link
+            href="/reglamento"
+            className="inline-flex items-center justify-center rounded-sm border border-white/60 px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/10"
+          >
+            Leer reglamento
+          </Link>
         </div>
       </div>
     </section>
