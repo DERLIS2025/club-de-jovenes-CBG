@@ -95,7 +95,7 @@ export default function RegistroPage() {
         return;
       }
 
-      router.push("/reglamento");
+      router.push("/campamento");
     } catch (error) {
       console.error("Error al enviar registro:", error);
       setSubmitError(
