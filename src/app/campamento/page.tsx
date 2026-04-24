@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
+import Countdown from "@/components/Countdown";
 
 /* ─── CBG Brand Colors ─── */
 const CBG = {
@@ -101,31 +102,37 @@ function formatPrice(gs: number): string {
 
 function HeroBanner() {
   return (
-    <section className="relative h-[50vh] min-h-[350px] w-full overflow-hidden sm:h-[60vh] sm:min-h-[450px]">
-      {/* Full background image - no overlay text */}
+    <section className="relative h-[55vh] min-h-[400px] w-full overflow-hidden sm:h-[65vh] sm:min-h-[500px]">
+      {/* Full background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url(/campamento-hero.jpg)" }}
       />
-      {/* Subtle bottom gradient for buttons readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+      {/* Bottom gradient for countdown + buttons */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-      {/* Buttons at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 pb-8 sm:pb-12">
-        <div className="mx-auto flex max-w-7xl justify-center gap-4 px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/registro"
-            className="inline-flex items-center justify-center rounded-sm bg-white px-8 py-3 text-sm font-semibold uppercase tracking-wider transition hover:bg-white/90"
-            style={{ color: CBG.navy }}
-          >
-            Registrarme
-          </Link>
-          <Link
-            href="/reglamento"
-            className="inline-flex items-center justify-center rounded-sm border border-white/60 px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/10"
-          >
-            Leer reglamento
-          </Link>
+      {/* Countdown + Buttons at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 pb-6 sm:pb-10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-5 px-4 sm:px-6 lg:px-8">
+          {/* Countdown */}
+          <Countdown />
+
+          {/* Buttons */}
+          <div className="flex gap-4">
+            <Link
+              href="/registro"
+              className="inline-flex items-center justify-center rounded-sm bg-white px-8 py-3 text-sm font-semibold uppercase tracking-wider transition hover:bg-white/90"
+              style={{ color: CBG.navy }}
+            >
+              Registrarme
+            </Link>
+            <Link
+              href="/reglamento"
+              className="inline-flex items-center justify-center rounded-sm border border-white/60 px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/10"
+            >
+              Leer reglamento
+            </Link>
+          </div>
         </div>
       </div>
     </section>
