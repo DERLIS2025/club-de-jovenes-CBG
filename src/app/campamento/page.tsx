@@ -184,7 +184,7 @@ function TemaSection() {
                 Una fe examinada, una vida rendida a Cristo
               </h2>
               <blockquote className="mt-6 border-l-2 border-stone-500 pl-5 text-stone-300">
-                <p className="text-lg italic">"Examinaos a vosotros mismos si estáis en la fe."</p>
+                <p className="text-lg italic">&ldquo;Examinaos a vosotros mismos si estáis en la fe.&rdquo;</p>
                 <footer className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">
                   1 Corintios 13:5
                 </footer>
