@@ -2,11 +2,33 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const CBG_NAVY = "#1e3a5c";
 
+function getTimeRemaining() {
+  const target = new Date("2026-12-11T00:00:00-03:00");
+  const now = new Date();
+  const diff = target.getTime() - now.getTime();
+
+  if (diff <= 0) return { days: 0, hours: 0, expired: true };
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+  return { days, hours, expired: false };
+}
+
 export default function Header() {
   const pathname = usePathname();
+  const [time, setTime] = useState(() => getTimeRemaining());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(getTimeRemaining());
+    }, 60000); // Update every minute
+    return () => clearInterval(interval);
+  }, []);
 
   const navItems = [
     { label: "INICIO", href: "/bienvenida" },
@@ -26,7 +48,7 @@ export default function Header() {
           JÓVENES CBG
         </Link>
 
-        <nav className="hidden gap-8 text-sm font-medium uppercase tracking-wider sm:flex">
+        <nav className="hidden gap-6 text-sm font-medium uppercase tracking-wider sm:flex items-center">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -43,6 +65,17 @@ export default function Header() {
               </Link>
             );
           })}
+
+          {/* ⏱️ SMALL RED COUNTDOWN BADGE */}
+          {!time.expired && (
+            <div
+              className="ml-2 flex items-center gap-1.5 rounded-sm px-3 py-1.5 text-xs font-bold text-white"
+              style={{ backgroundColor: "#dc2626" }}
+            >
+              <span className="h-2 w-2 animate-pulse rounded-full bg-white" />
+              {time.days}d {time.hours}h
+            </div>
+          )}
         </nav>
 
         <Link
