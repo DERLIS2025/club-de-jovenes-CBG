@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
-import Countdown from "@/components/Countdown";
 
 /* ─── CBG Brand Colors ─── */
 const CBG = {
@@ -122,15 +121,7 @@ function HeroBanner() {
             Un campamento diseñado para escuchar la Palabra de Dios, fortalecer la comunión y vivir una experiencia centrada en Cristo.
           </p>
 
-          {/* ⏱️ COUNTDOWN */}
-          <div className="mt-10">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
-              Faltan para el campamento
-            </p>
-            <Countdown />
-          </div>
-
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               href="/registro"
               className="inline-flex items-center justify-center rounded-sm bg-white px-8 py-3 text-sm font-semibold uppercase tracking-wider transition hover:bg-white/90"
