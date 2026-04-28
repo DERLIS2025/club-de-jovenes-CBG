@@ -3,9 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const YOUTUBE_VIDEO_ID = "_EpTnktKT-o";
-
-const YOUTUBE_BACKGROUND_URL = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=1&controls=0&loop=1&playlist=${YOUTUBE_VIDEO_ID}&playsinline=1&modestbranding=1&rel=0&showinfo=0`;
+const VIDEO_BACKGROUND_URL = "/videos/campamento-bg.mp4";
+const POSTER_IMAGE_URL = "/campamento-bg.jpg";
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,25 +15,28 @@ export default function HomePage() {
 
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#1e3a5c] text-white">
-      {/* Video de fondo */}
-      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <iframe
-          src={YOUTUBE_BACKGROUND_URL}
-          title="Video de fondo Campamento 2026"
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-screen min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2"
-          allow="autoplay; encrypted-media; picture-in-picture"
-          allowFullScreen
-        />
-      </div>
+      {/* Video de fondo local */}
+      <video
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster={POSTER_IMAGE_URL}
+        aria-hidden="true"
+      >
+        <source src={VIDEO_BACKGROUND_URL} type="video/mp4" />
+      </video>
 
-      {/* Overlay más suave, no tan oscuro */}
+      {/* Overlay suave para lectura */}
       <div
-        className="absolute inset-0 bg-[#1e3a5c]/55"
+        className="absolute inset-0 bg-[#1e3a5c]/35"
         aria-hidden="true"
       />
 
       <div
-        className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/35"
+        className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/15 to-black/45"
         aria-hidden="true"
       />
 
