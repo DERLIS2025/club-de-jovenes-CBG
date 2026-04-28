@@ -33,8 +33,8 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { label: "INICIO", href: "/bienvenida" },
-    { label: "CAMPAMENTO", href: "/campamento" },
+    { label: "INICIO", href: "/campamento" },
+    { label: "BIENVENIDA", href: "/bienvenida" },
     { label: "REGISTRO", href: "/registro" },
     { label: "REGLAMENTO", href: "/reglamento" },
   ];
@@ -43,7 +43,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-[#e5e5e5] bg-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <Link
-          href="/bienvenida"
+          href="/campamento"
           className="font-serif text-xl font-bold tracking-tight"
           style={{ color: CBG_NAVY }}
         >
@@ -69,31 +69,26 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Right side: Countdown + Inscribirme */}
         <div className="flex items-center gap-3">
-          {/* 🔴 COUNTDOWN - EXACT DESIGN FROM IMAGE */}
           {!time.expired && (
             <div className="hidden md:inline-flex items-center gap-4 rounded-2xl bg-white px-5 py-3 shadow-lg border border-gray-100">
-              {/* Icon + Text */}
               <div className="flex flex-col items-center">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <circle cx="20" cy="20" r="18" stroke="#dc2626" strokeWidth="3" fill="none"/>
-                  <circle cx="20" cy="20" r="14" fill="#fef3c7"/>
-                  <line x1="20" y1="20" x2="20" y2="10" stroke="#1a1a1a" strokeWidth="2.5" strokeLinecap="round"/>
-                  <line x1="20" y1="20" x2="26" y2="20" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round"/>
-                  <circle cx="20" cy="20" r="2" fill="#dc2626"/>
-                  <path d="M28 28 Q30 24 32 26 Q34 22 30 20 Q28 18 26 22 Q24 26 28 28Z" fill="#f59e0b"/>
-                  <path d="M29 27 Q30 24 31 25 Q32 23 30 22 Q29 21 28 23 Q27 25 29 27Z" fill="#ef4444"/>
+                  <circle cx="20" cy="20" r="18" stroke="#dc2626" strokeWidth="3" fill="none" />
+                  <circle cx="20" cy="20" r="14" fill="#fef3c7" />
+                  <line x1="20" y1="20" x2="20" y2="10" stroke="#1a1a1a" strokeWidth="2.5" strokeLinecap="round" />
+                  <line x1="20" y1="20" x2="26" y2="20" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" />
+                  <circle cx="20" cy="20" r="2" fill="#dc2626" />
+                  <path d="M28 28 Q30 24 32 26 Q34 22 30 20 Q28 18 26 22 Q24 26 28 28Z" fill="#f59e0b" />
+                  <path d="M29 27 Q30 24 31 25 Q32 23 30 22 Q29 21 28 23 Q27 25 29 27Z" fill="#ef4444" />
                 </svg>
                 <span className="text-[10px] font-black uppercase tracking-tight mt-1" style={{ color: "#dc2626" }}>
                   ¡¡INSCRIBITE YA!!
                 </span>
               </div>
 
-              {/* Divider */}
               <div className="h-12 w-px bg-gray-200" />
 
-              {/* Numbers */}
               <div className="flex items-center gap-2">
                 {[
                   { value: time.days, label: "días" },
