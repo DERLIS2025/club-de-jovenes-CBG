@@ -120,6 +120,7 @@ function HeroBanner() {
 
 function CategoryNav() {
   const categories = [
+    { label: "Bienvenida", href: "/bienvenida" },
     { label: "Remeras", href: "#remeras" },
     { label: "Equipos", href: "#equipos" },
     { label: "Cronograma", href: "#cronograma" },
@@ -128,12 +129,12 @@ function CategoryNav() {
 
   return (
     <div className="border-b border-[#e5e5e5] bg-white">
-      <div className="mx-auto flex max-w-7xl justify-center gap-2 px-4 py-4 sm:gap-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-3 px-4 py-4 sm:gap-4 sm:px-6 lg:px-8">
         {categories.map((cat) => (
           <a
             key={cat.label}
             href={cat.href}
-            className="rounded-sm border px-4 py-2 text-xs font-semibold uppercase tracking-wider transition hover:border-[#1e3a5c] hover:text-[#1e3a5c]"
+            className="rounded-sm border px-5 py-2.5 text-sm font-semibold uppercase tracking-wider transition hover:border-[#1e3a5c] hover:text-[#1e3a5c]"
             style={{ borderColor: CBG.border, color: CBG.textMuted }}
           >
             {cat.label}
@@ -200,14 +201,14 @@ function RemerasSection() {
         <div className="mb-10 flex items-end justify-between">
           <div>
             <p
-              className="text-sm font-semibold uppercase tracking-[0.2em]"
+              className="text-base font-semibold uppercase tracking-[0.25em]"
               style={{ color: CBG.gold }}
             >
               Edición limitada
             </p>
 
             <h2
-              className="mt-2 font-serif text-3xl font-bold sm:text-4xl"
+              className="mt-2 font-serif text-4xl font-bold sm:text-5xl"
               style={{ color: CBG.text }}
             >
               Remeras oficiales
@@ -231,15 +232,15 @@ function RemerasSection() {
                   Ref: {remera.ref}
                 </p>
 
-                <h3 className="mt-1 font-serif text-lg font-bold" style={{ color: CBG.text }}>
+                <h3 className="mt-2 font-serif text-2xl font-bold" style={{ color: CBG.text }}>
                   {remera.nombre}
                 </h3>
 
-                <p className="mt-1 text-sm" style={{ color: CBG.textMuted }}>
+                <p className="mt-2 text-base leading-relaxed" style={{ color: CBG.textMuted }}>
                   {remera.descripcion}
                 </p>
 
-                <p className="mt-3 text-lg font-bold" style={{ color: CBG.text }}>
+                <p className="mt-4 text-2xl font-bold" style={{ color: CBG.text }}>
                   {formatPrice(remera.precio)}
                 </p>
 
@@ -266,7 +267,7 @@ function RemerasSection() {
                   href={getWhatsAppUrl(remera.nombre, selectedSizes[remera.id] || "M")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-sm py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:opacity-90"
+                  className="mt-5 flex w-full items-center justify-center gap-2 rounded-sm py-4 text-base font-semibold uppercase tracking-wider text-white transition hover:opacity-90"
                   style={{ backgroundColor: CBG.navy }}
                 >
                   <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
