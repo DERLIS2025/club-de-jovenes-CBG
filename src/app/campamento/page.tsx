@@ -7,10 +7,7 @@ import Header from "@/components/Header";
 /* ─── CBG Brand Colors ─── */
 const CBG = {
   navy: "#1e3a5c",
-  navyLight: "#2a4a73",
   gold: "#b8860b",
-  goldLight: "#d4a520",
-  white: "#ffffff",
   cream: "#f8f6f1",
   text: "#1a1a1a",
   textMuted: "#666666",
@@ -25,7 +22,6 @@ type Remera = {
   precio: number;
   ref: string;
   imagen: string;
-  tono: string;
 };
 
 type Equipo = {
@@ -46,29 +42,26 @@ const REMERAS: Remera[] = [
   {
     id: "oficial-1",
     nombre: "Remera oficial del campamento",
-    descripcion: "Modelo oficial del Campamento CBG 2026.",
+    descripcion: "Modelo oficial único del Campamento CBG 2026.",
     precio: 100000,
     ref: "CBG-REM-01",
     imagen: "/campamento/remera-oficial.jpg",
-    tono: "bg-stone-100",
   },
   {
     id: "oficial-2",
     nombre: "Remera oficial del campamento",
-    descripcion: "Modelo oficial del Campamento CBG 2026.",
+    descripcion: "Modelo oficial único del Campamento CBG 2026.",
     precio: 100000,
     ref: "CBG-REM-02",
     imagen: "/campamento/remera-oficial.jpg",
-    tono: "bg-stone-100",
   },
   {
     id: "oficial-3",
     nombre: "Remera oficial del campamento",
-    descripcion: "Modelo oficial del Campamento CBG 2026.",
+    descripcion: "Modelo oficial único del Campamento CBG 2026.",
     precio: 100000,
     ref: "CBG-REM-03",
     imagen: "/campamento/remera-oficial.jpg",
-    tono: "bg-stone-100",
   },
 ];
 
@@ -112,7 +105,7 @@ function HeroBanner() {
     <section className="relative h-[40vh] min-h-[280px] w-full overflow-hidden sm:h-[55vh] sm:min-h-[400px] lg:h-[65vh] lg:min-h-[500px]">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url(/campamento-hero.jpg)" }}
+        style={{ backgroundImage: "url(/campamento/campamento-hero.jpg)" }}
       />
     </section>
   );
@@ -129,13 +122,12 @@ function CategoryNav() {
 
   return (
     <div className="border-b border-[#e5e5e5] bg-white">
-      <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-3 px-4 py-4 sm:gap-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-3 px-4 py-5 sm:gap-4 sm:px-6 lg:px-8">
         {categories.map((cat) => (
           <a
             key={cat.label}
             href={cat.href}
-            className="rounded-sm border px-5 py-2.5 text-sm font-semibold uppercase tracking-wider transition hover:border-[#1e3a5c] hover:text-[#1e3a5c]"
-            style={{ borderColor: CBG.border, color: CBG.textMuted }}
+            className="rounded-sm border border-[#e5e5e5] px-5 py-2.5 text-sm font-bold uppercase tracking-wider text-[#666666] transition hover:border-[#1e3a5c] hover:bg-[#1e3a5c] hover:text-white"
           >
             {cat.label}
           </a>
@@ -174,13 +166,12 @@ function TemaSection() {
             </div>
           </div>
 
-          <div className="relative min-h-[300px] bg-gradient-to-br from-[#d4a520]/20 to-[#b8860b]/10 lg:min-h-0">
-            <div
-              className="absolute inset-0 flex items-center justify-center"
-              style={{ color: CBG.textMuted }}
-            >
-              <span className="text-sm uppercase tracking-wider">Imagen del campamento</span>
-            </div>
+          <div className="relative min-h-[300px] overflow-hidden lg:min-h-0">
+            <img
+              src="/campamento/campamento-bg.jpg"
+              alt="Imagen del campamento"
+              className="h-full min-h-[300px] w-full object-cover"
+            />
           </div>
         </div>
       </div>
@@ -196,43 +187,54 @@ function RemerasSection() {
   };
 
   return (
-    <section id="remeras" className="bg-white py-16">
+    <section id="remeras" className="bg-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 flex items-end justify-between">
+        <div className="mb-12 flex items-end justify-between">
           <div>
             <p
-              className="text-base font-semibold uppercase tracking-[0.25em]"
+              className="text-base font-bold uppercase tracking-[0.25em]"
               style={{ color: CBG.gold }}
             >
               Edición limitada
             </p>
 
             <h2
-              className="mt-2 font-serif text-4xl font-bold sm:text-5xl"
+              className="mt-3 font-serif text-4xl font-bold sm:text-5xl"
               style={{ color: CBG.text }}
             >
               Remeras oficiales
             </h2>
+
+            <p className="mt-3 max-w-2xl text-base leading-relaxed" style={{ color: CBG.textMuted }}>
+              Tenemos un solo modelo oficial del campamento. Elegí tu talle y reservá por WhatsApp.
+            </p>
           </div>
         </div>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {REMERAS.map((remera) => (
-            <article key={remera.id} className="group">
-              <div className={`relative aspect-[4/5] overflow-hidden rounded-sm ${remera.tono}`}>
+            <article
+              key={remera.id}
+              className="group rounded-sm border border-[#e5e5e5] bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[#f8f6f1]">
                 <img
                   src={remera.imagen}
                   alt={remera.nombre}
                   className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
+
+                <div className="absolute left-4 top-4 rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#1e3a5c] shadow-sm">
+                  Oficial
+                </div>
               </div>
 
-              <div className="mt-4">
-                <p className="text-xs" style={{ color: CBG.textMuted }}>
+              <div className="mt-5">
+                <p className="text-xs font-medium uppercase tracking-wider" style={{ color: CBG.textMuted }}>
                   Ref: {remera.ref}
                 </p>
 
-                <h3 className="mt-2 font-serif text-2xl font-bold" style={{ color: CBG.text }}>
+                <h3 className="mt-2 font-serif text-2xl font-bold leading-tight" style={{ color: CBG.text }}>
                   {remera.nombre}
                 </h3>
 
@@ -240,40 +242,51 @@ function RemerasSection() {
                   {remera.descripcion}
                 </p>
 
-                <p className="mt-4 text-2xl font-bold" style={{ color: CBG.text }}>
-                  {formatPrice(remera.precio)}
-                </p>
+                <div className="mt-4 flex items-end justify-between gap-4">
+                  <p className="text-2xl font-black" style={{ color: CBG.text }}>
+                    {formatPrice(remera.precio)}
+                  </p>
+                  <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: CBG.gold }}>
+                    Precio único
+                  </p>
+                </div>
 
-                <div className="mt-3 flex gap-2">
-                  {TALLAS.map((talla) => (
-                    <button
-                      key={talla}
-                      type="button"
-                      onClick={() => handleSizeChange(remera.id, talla)}
-                      className="h-8 w-8 rounded-sm border text-xs font-medium transition"
-                      style={{
-                        borderColor: selectedSizes[remera.id] === talla ? CBG.navy : CBG.border,
-                        backgroundColor:
-                          selectedSizes[remera.id] === talla ? CBG.navy : "transparent",
-                        color: selectedSizes[remera.id] === talla ? "white" : CBG.textMuted,
-                      }}
-                    >
-                      {talla}
-                    </button>
-                  ))}
+                <div className="mt-4">
+                  <p className="mb-2 text-xs font-bold uppercase tracking-wider" style={{ color: CBG.textMuted }}>
+                    Elegí tu talle
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {TALLAS.map((talla) => (
+                      <button
+                        key={talla}
+                        type="button"
+                        onClick={() => handleSizeChange(remera.id, talla)}
+                        className="h-9 min-w-9 rounded-sm border px-2 text-xs font-bold transition"
+                        style={{
+                          borderColor: selectedSizes[remera.id] === talla ? CBG.navy : CBG.border,
+                          backgroundColor:
+                            selectedSizes[remera.id] === talla ? CBG.navy : "transparent",
+                          color: selectedSizes[remera.id] === talla ? "white" : CBG.textMuted,
+                        }}
+                      >
+                        {talla}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 <a
                   href={getWhatsAppUrl(remera.nombre, selectedSizes[remera.id] || "M")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-5 flex w-full items-center justify-center gap-2 rounded-sm py-4 text-base font-semibold uppercase tracking-wider text-white transition hover:opacity-90"
+                  className="mt-5 flex w-full items-center justify-center gap-2 rounded-sm py-4 text-base font-bold uppercase tracking-wider text-white transition hover:opacity-90"
                   style={{ backgroundColor: CBG.navy }}
                 >
-                  <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.521.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                   </svg>
-                  Reservar
+                  Reservar por WhatsApp
                 </a>
               </div>
             </article>
@@ -418,8 +431,7 @@ function LugarSection() {
               href={MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center justify-center rounded-sm border px-6 py-2.5 text-sm font-semibold uppercase tracking-wider transition hover:text-white"
-              style={{ borderColor: CBG.navy, color: CBG.navy }}
+              className="mt-6 inline-flex items-center justify-center rounded-sm border border-[#1e3a5c] px-6 py-2.5 text-sm font-semibold uppercase tracking-wider text-[#1e3a5c] transition hover:bg-[#1e3a5c] hover:text-white"
             >
               Ver en Google Maps
             </a>
@@ -501,6 +513,13 @@ function CTASection() {
             className="inline-flex items-center justify-center rounded-sm border border-white/30 px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/10"
           >
             Leer reglamento
+          </Link>
+
+          <Link
+            href="/bienvenida"
+            className="inline-flex items-center justify-center rounded-sm border border-white/30 px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/10"
+          >
+            Bienvenida
           </Link>
         </div>
       </div>
