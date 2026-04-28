@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const BACKGROUND_IMAGE_URL = "/campamento-bg.jpg";
+const BACKGROUND_IMAGE_URL = "/campamento/campamento-bg.jpg";
 
 export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
