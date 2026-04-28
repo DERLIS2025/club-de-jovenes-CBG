@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState } from "react";
 import Header from "@/components/Header";
 
-/* ─── CBG Brand Colors ─── */
 const CBG = {
   navy: "#1e3a5c",
   gold: "#b8860b",
@@ -14,13 +13,10 @@ const CBG = {
   border: "#e5e5e5",
 };
 
-/* ─── Types ─── */
 type Remera = {
   id: string;
   nombre: string;
-  descripcion: string;
   precio: number;
-  ref: string;
   imagen: string;
 };
 
@@ -35,32 +31,25 @@ type Dia = {
   actividades: string[];
 };
 
-/* ─── Data ─── */
 const TALLAS = ["S", "M", "L", "XL", "XXL"];
 
 const REMERAS: Remera[] = [
   {
     id: "oficial-1",
     nombre: "Remera oficial del campamento",
-    descripcion: "Modelo oficial único del Campamento CBG 2026.",
     precio: 100000,
-    ref: "CBG-REM-01",
     imagen: "/campamento/remera-oficial.jpg",
   },
   {
     id: "oficial-2",
     nombre: "Remera oficial del campamento",
-    descripcion: "Modelo oficial único del Campamento CBG 2026.",
     precio: 100000,
-    ref: "CBG-REM-02",
     imagen: "/campamento/remera-oficial.jpg",
   },
   {
     id: "oficial-3",
     nombre: "Remera oficial del campamento",
-    descripcion: "Modelo oficial único del Campamento CBG 2026.",
     precio: 100000,
-    ref: "CBG-REM-03",
     imagen: "/campamento/remera-oficial.jpg",
   },
 ];
@@ -89,7 +78,6 @@ const YOUTUBE_VIDEO_ID = "_EpTnktKT-o";
 
 const YOUTUBE_EMBED_URL = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`;
 
-/* ─── Helpers ─── */
 function getWhatsAppUrl(producto: string, talla: string): string {
   const message = `Hola! Quiero reservar la ${producto} en talla ${talla} para el Campamento CBG 2026.`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -99,13 +87,13 @@ function formatPrice(gs: number): string {
   return "Gs. " + gs.toLocaleString("es-PY");
 }
 
-/* ─── Components ─── */
 function HeroBanner() {
   return (
     <section className="relative h-[40vh] min-h-[280px] w-full overflow-hidden sm:h-[55vh] sm:min-h-[400px] lg:h-[65vh] lg:min-h-[500px]">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url(/campamento/campamento-hero.jpg)" }}
+      <img
+        src="/campamento/campamento-hero.jpg"
+        alt="Campamento 2026"
+        className="absolute inset-0 h-full w-full object-cover"
       />
     </section>
   );
@@ -226,16 +214,16 @@ function RemerasSection() {
             </h2>
 
             <p className="mt-4 max-w-3xl text-lg leading-relaxed" style={{ color: CBG.textMuted }}>
-              Tenemos un solo modelo oficial del campamento. Elegí tu talle y reservá por WhatsApp.
+              Elegí tu talle y reservá por WhatsApp.
             </p>
           </div>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="flex snap-x gap-5 overflow-x-auto pb-4 sm:grid sm:snap-none sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-3">
           {REMERAS.map((remera) => (
             <article
               key={remera.id}
-              className="group rounded-sm border border-[#e5e5e5] bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              className="group min-w-[82%] snap-start rounded-sm border border-[#e5e5e5] bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg sm:min-w-0"
             >
               <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[#f8f6f1]">
                 <img
@@ -250,17 +238,9 @@ function RemerasSection() {
               </div>
 
               <div className="mt-5">
-                <p className="text-sm font-medium uppercase tracking-wider" style={{ color: CBG.textMuted }}>
-                  Ref: {remera.ref}
-                </p>
-
-                <h3 className="mt-2 font-serif text-3xl font-bold leading-tight" style={{ color: CBG.text }}>
+                <h3 className="font-serif text-3xl font-bold leading-tight" style={{ color: CBG.text }}>
                   {remera.nombre}
                 </h3>
-
-                <p className="mt-3 text-lg leading-relaxed" style={{ color: CBG.textMuted }}>
-                  {remera.descripcion}
-                </p>
 
                 <div className="mt-5 flex items-end justify-between gap-4">
                   <p className="text-3xl font-black" style={{ color: CBG.text }}>
@@ -325,11 +305,11 @@ function EquiposSection() {
           Equipos del campamento
         </h2>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="flex snap-x gap-5 overflow-x-auto pb-4 sm:grid sm:snap-none sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-4">
           {EQUIPOS.map((equipo) => (
             <article
               key={equipo.nombre}
-              className="rounded-sm border border-[#e5e5e5] bg-white p-6 transition hover:shadow-md"
+              className="min-w-[78%] snap-start rounded-sm border border-[#e5e5e5] bg-white p-6 transition hover:shadow-md sm:min-w-0"
               style={{ borderTop: `4px solid ${equipo.color}` }}
             >
               <h3 className="font-serif text-2xl font-bold" style={{ color: CBG.text }}>
@@ -357,11 +337,11 @@ function CronogramaSection() {
           Cronograma
         </h2>
 
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="flex snap-x gap-5 overflow-x-auto pb-4 sm:grid sm:snap-none sm:grid-cols-3 sm:overflow-visible sm:pb-0">
           {CRONOGRAMA.map((bloque) => (
             <article
               key={bloque.dia}
-              className="rounded-sm border border-[#e5e5e5] p-6"
+              className="min-w-[78%] snap-start rounded-sm border border-[#e5e5e5] p-6 sm:min-w-0"
               style={{ backgroundColor: CBG.cream }}
             >
               <h3 className="font-serif text-2xl font-bold" style={{ color: CBG.navy }}>
@@ -561,12 +541,12 @@ function Footer() {
             <ul className="mt-3 space-y-2 text-base text-white/50">
               <li>
                 <Link href="/" className="hover:text-white">
-                  Inicio
+                  Portada
                 </Link>
               </li>
               <li>
                 <Link href="/campamento" className="hover:text-white">
-                  Campamento
+                  Inicio
                 </Link>
               </li>
             </ul>
@@ -627,7 +607,6 @@ function Footer() {
   );
 }
 
-/* ─── Main Page ─── */
 export default function CampamentoPage() {
   return (
     <div className="min-h-screen bg-white text-[17px] md:text-[18px]">
