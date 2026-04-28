@@ -20,12 +20,6 @@ type Remera = {
   imagen: string;
 };
 
-type Equipo = {
-  nombre: string;
-  descripcion: string;
-  color: string;
-};
-
 type Dia = {
   dia: string;
   actividades: string[];
@@ -52,13 +46,6 @@ const REMERAS: Remera[] = [
     precio: 100000,
     imagen: "/campamento/remera-oficial.jpg",
   },
-];
-
-const EQUIPOS: Equipo[] = [
-  { nombre: "Equipo Azul", descripcion: "Pasión por servir con fidelidad.", color: "#dbeafe" },
-  { nombre: "Equipo Rojo", descripcion: "Compromiso y entusiasmo.", color: "#fee2e2" },
-  { nombre: "Equipo Verde", descripcion: "Crecimiento y apoyo mutuo.", color: "#dcfce7" },
-  { nombre: "Equipo Amarillo", descripcion: "Gozo y creatividad.", color: "#fef9c3" },
 ];
 
 const CRONOGRAMA: Dia[] = [
@@ -115,7 +102,6 @@ function CategoryNav() {
 
   const sectionLinks = [
     { label: "Remeras", href: "#remeras" },
-    { label: "Equipos", href: "#equipos" },
     { label: "Cronograma", href: "#cronograma" },
     { label: "Lugar", href: "#lugar" },
     { label: "Video", href: "#video" },
@@ -291,38 +277,6 @@ function RemerasSection() {
                   Reservar por WhatsApp
                 </a>
               </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EquiposSection() {
-  return (
-    <section id="equipos" className="py-14 sm:py-16" style={{ backgroundColor: CBG.cream }}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2
-          className="mb-8 text-3xl font-semibold leading-tight sm:mb-10 sm:text-5xl"
-          style={{ color: CBG.text }}
-        >
-          Equipos del campamento
-        </h2>
-
-        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
-          {EQUIPOS.map((equipo) => (
-            <article
-              key={equipo.nombre}
-              className="min-w-[78%] max-w-[78%] snap-start rounded-sm border border-[#e5e5e5] bg-white p-5 transition hover:shadow-md sm:min-w-0 sm:max-w-none sm:p-6"
-              style={{ borderTop: `4px solid ${equipo.color}` }}
-            >
-              <h3 className="text-xl font-semibold sm:text-2xl" style={{ color: CBG.text }}>
-                {equipo.nombre}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed sm:mt-3 sm:text-base" style={{ color: CBG.textMuted }}>
-                {equipo.descripcion}
-              </p>
             </article>
           ))}
         </div>
@@ -620,7 +574,6 @@ export default function CampamentoPage() {
       <CategoryNav />
       <TemaSection />
       <RemerasSection />
-      <EquiposSection />
       <CronogramaSection />
       <LugarSection />
       <VideoSection />
