@@ -127,7 +127,7 @@ function CategoryNav() {
           <a
             key={cat.label}
             href={cat.href}
-            className="rounded-sm border border-[#e5e5e5] px-5 py-2.5 text-sm font-bold uppercase tracking-wider text-[#666666] transition hover:border-[#1e3a5c] hover:bg-[#1e3a5c] hover:text-white"
+            className="rounded-sm border border-[#e5e5e5] px-6 py-3 text-base font-bold uppercase tracking-wider text-[#666666] transition hover:border-[#1e3a5c] hover:bg-[#1e3a5c] hover:text-white"
           >
             {cat.label}
           </a>
@@ -147,19 +147,19 @@ function TemaSection() {
             style={{ backgroundColor: CBG.navy }}
           >
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-white/60">
+              <p className="text-base font-semibold uppercase tracking-[0.3em] text-white/60">
                 Tema Central
               </p>
 
-              <h2 className="mt-4 font-serif text-3xl font-bold text-white sm:text-4xl">
+              <h2 className="mt-4 font-serif text-4xl font-bold text-white sm:text-5xl">
                 Una fe examinada, una vida rendida a Cristo
               </h2>
 
               <blockquote className="mt-6 border-l-2 border-[#b8860b] pl-5 text-white/80">
-                <p className="text-lg italic">
+                <p className="text-xl italic">
                   &ldquo;Examinaos a vosotros mismos si estáis en la fe.&rdquo;
                 </p>
-                <footer className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+                <footer className="mt-2 text-sm font-semibold uppercase tracking-[0.2em] text-white/50">
                   1 Corintios 13:5
                 </footer>
               </blockquote>
@@ -199,13 +199,13 @@ function RemerasSection() {
             </p>
 
             <h2
-              className="mt-3 font-serif text-4xl font-bold sm:text-5xl"
+              className="mt-3 font-serif text-5xl font-bold sm:text-6xl"
               style={{ color: CBG.text }}
             >
               Remeras oficiales
             </h2>
 
-            <p className="mt-3 max-w-2xl text-base leading-relaxed" style={{ color: CBG.textMuted }}>
+            <p className="mt-4 max-w-3xl text-lg leading-relaxed" style={{ color: CBG.textMuted }}>
               Tenemos un solo modelo oficial del campamento. Elegí tu talle y reservá por WhatsApp.
             </p>
           </div>
@@ -224,35 +224,35 @@ function RemerasSection() {
                   className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
 
-                <div className="absolute left-4 top-4 rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-[#1e3a5c] shadow-sm">
+                <div className="absolute left-4 top-4 rounded-full bg-white px-4 py-1.5 text-sm font-bold uppercase tracking-wider text-[#1e3a5c] shadow-sm">
                   Oficial
                 </div>
               </div>
 
               <div className="mt-5">
-                <p className="text-xs font-medium uppercase tracking-wider" style={{ color: CBG.textMuted }}>
+                <p className="text-sm font-medium uppercase tracking-wider" style={{ color: CBG.textMuted }}>
                   Ref: {remera.ref}
                 </p>
 
-                <h3 className="mt-2 font-serif text-2xl font-bold leading-tight" style={{ color: CBG.text }}>
+                <h3 className="mt-2 font-serif text-3xl font-bold leading-tight" style={{ color: CBG.text }}>
                   {remera.nombre}
                 </h3>
 
-                <p className="mt-2 text-base leading-relaxed" style={{ color: CBG.textMuted }}>
+                <p className="mt-3 text-lg leading-relaxed" style={{ color: CBG.textMuted }}>
                   {remera.descripcion}
                 </p>
 
-                <div className="mt-4 flex items-end justify-between gap-4">
-                  <p className="text-2xl font-black" style={{ color: CBG.text }}>
+                <div className="mt-5 flex items-end justify-between gap-4">
+                  <p className="text-3xl font-black" style={{ color: CBG.text }}>
                     {formatPrice(remera.precio)}
                   </p>
-                  <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: CBG.gold }}>
+                  <p className="text-sm font-semibold uppercase tracking-wider" style={{ color: CBG.gold }}>
                     Precio único
                   </p>
                 </div>
 
-                <div className="mt-4">
-                  <p className="mb-2 text-xs font-bold uppercase tracking-wider" style={{ color: CBG.textMuted }}>
+                <div className="mt-5">
+                  <p className="mb-3 text-sm font-bold uppercase tracking-wider" style={{ color: CBG.textMuted }}>
                     Elegí tu talle
                   </p>
 
@@ -262,7 +262,7 @@ function RemerasSection() {
                         key={talla}
                         type="button"
                         onClick={() => handleSizeChange(remera.id, talla)}
-                        className="h-9 min-w-9 rounded-sm border px-2 text-xs font-bold transition"
+                        className="h-10 min-w-10 rounded-sm border px-3 text-sm font-bold transition"
                         style={{
                           borderColor: selectedSizes[remera.id] === talla ? CBG.navy : CBG.border,
                           backgroundColor:
@@ -280,7 +280,7 @@ function RemerasSection() {
                   href={getWhatsAppUrl(remera.nombre, selectedSizes[remera.id] || "M")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-5 flex w-full items-center justify-center gap-2 rounded-sm py-4 text-base font-bold uppercase tracking-wider text-white transition hover:opacity-90"
+                  className="mt-6 flex w-full items-center justify-center gap-2 rounded-sm py-4 text-lg font-bold uppercase tracking-wider text-white transition hover:opacity-90"
                   style={{ backgroundColor: CBG.navy }}
                 >
                   <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -302,7 +302,7 @@ function EquiposSection() {
     <section id="equipos" className="py-16" style={{ backgroundColor: CBG.cream }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2
-          className="mb-10 font-serif text-3xl font-bold sm:text-4xl"
+          className="mb-10 font-serif text-4xl font-bold sm:text-5xl"
           style={{ color: CBG.text }}
         >
           Equipos del campamento
@@ -315,10 +315,10 @@ function EquiposSection() {
               className="rounded-sm border border-[#e5e5e5] bg-white p-6 transition hover:shadow-md"
               style={{ borderTop: `4px solid ${equipo.color}` }}
             >
-              <h3 className="font-serif text-lg font-bold" style={{ color: CBG.text }}>
+              <h3 className="font-serif text-2xl font-bold" style={{ color: CBG.text }}>
                 {equipo.nombre}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed" style={{ color: CBG.textMuted }}>
+              <p className="mt-3 text-base leading-relaxed" style={{ color: CBG.textMuted }}>
                 {equipo.descripcion}
               </p>
             </article>
@@ -334,7 +334,7 @@ function CronogramaSection() {
     <section id="cronograma" className="bg-white py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2
-          className="mb-10 font-serif text-3xl font-bold sm:text-4xl"
+          className="mb-10 font-serif text-4xl font-bold sm:text-5xl"
           style={{ color: CBG.text }}
         >
           Cronograma
@@ -347,7 +347,7 @@ function CronogramaSection() {
               className="rounded-sm border border-[#e5e5e5] p-6"
               style={{ backgroundColor: CBG.cream }}
             >
-              <h3 className="font-serif text-xl font-bold" style={{ color: CBG.navy }}>
+              <h3 className="font-serif text-2xl font-bold" style={{ color: CBG.navy }}>
                 {bloque.dia}
               </h3>
 
@@ -355,11 +355,11 @@ function CronogramaSection() {
                 {bloque.actividades.map((actividad, i) => (
                   <li
                     key={actividad}
-                    className="flex items-center gap-3 text-sm"
+                    className="flex items-center gap-3 text-base"
                     style={{ color: CBG.textMuted }}
                   >
                     <span
-                      className="flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold text-white"
+                      className="flex h-7 w-7 items-center justify-center rounded-full text-sm font-semibold text-white"
                       style={{ backgroundColor: CBG.navy }}
                     >
                       {i + 1}
@@ -383,7 +383,7 @@ function LugarSection() {
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div className="rounded-sm border border-[#e5e5e5] bg-white p-6 sm:p-8">
             <h2
-              className="font-serif text-3xl font-bold sm:text-4xl"
+              className="font-serif text-4xl font-bold sm:text-5xl"
               style={{ color: CBG.text }}
             >
               Lugar del campamento
@@ -392,36 +392,36 @@ function LugarSection() {
             <div className="mt-6 space-y-4">
               <div>
                 <p
-                  className="text-xs font-semibold uppercase tracking-wider"
+                  className="text-sm font-semibold uppercase tracking-wider"
                   style={{ color: CBG.gold }}
                 >
                   Nombre
                 </p>
-                <p className="mt-1 text-lg font-medium" style={{ color: CBG.text }}>
+                <p className="mt-1 text-xl font-medium" style={{ color: CBG.text }}>
                   Campamento Kavaju - Palabra de Vida
                 </p>
               </div>
 
               <div>
                 <p
-                  className="text-xs font-semibold uppercase tracking-wider"
+                  className="text-sm font-semibold uppercase tracking-wider"
                   style={{ color: CBG.gold }}
                 >
                   Dirección
                 </p>
-                <p className="mt-1 text-lg font-medium" style={{ color: CBG.text }}>
+                <p className="mt-1 text-xl font-medium" style={{ color: CBG.text }}>
                   Ver ubicación exacta en Google Maps
                 </p>
               </div>
 
               <div>
                 <p
-                  className="text-xs font-semibold uppercase tracking-wider"
+                  className="text-sm font-semibold uppercase tracking-wider"
                   style={{ color: CBG.gold }}
                 >
                   Ciudad
                 </p>
-                <p className="mt-1 text-lg font-medium" style={{ color: CBG.text }}>
+                <p className="mt-1 text-xl font-medium" style={{ color: CBG.text }}>
                   Atyrá, Paraguay
                 </p>
               </div>
@@ -431,7 +431,7 @@ function LugarSection() {
               href={MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center justify-center rounded-sm border border-[#1e3a5c] px-6 py-2.5 text-sm font-semibold uppercase tracking-wider text-[#1e3a5c] transition hover:bg-[#1e3a5c] hover:text-white"
+              className="mt-6 inline-flex items-center justify-center rounded-sm border border-[#1e3a5c] px-7 py-3 text-base font-semibold uppercase tracking-wider text-[#1e3a5c] transition hover:bg-[#1e3a5c] hover:text-white"
             >
               Ver en Google Maps
             </a>
@@ -439,7 +439,7 @@ function LugarSection() {
 
           <div className="rounded-sm border border-[#e5e5e5] bg-white p-6 sm:p-8">
             <h2
-              className="font-serif text-2xl font-bold sm:text-4xl"
+              className="font-serif text-4xl font-bold sm:text-5xl"
               style={{ color: CBG.text }}
             >
               Mapa
@@ -466,7 +466,7 @@ function VideoSection() {
     <section className="bg-white py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2
-          className="mb-6 font-serif text-3xl font-bold sm:text-4xl"
+          className="mb-6 font-serif text-4xl font-bold sm:text-5xl"
           style={{ color: CBG.text }}
         >
           Video informativo
@@ -490,11 +490,11 @@ function CTASection() {
   return (
     <section className="py-16" style={{ backgroundColor: CBG.navy }}>
       <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-        <h2 className="font-serif text-3xl font-bold text-white sm:text-4xl">
+        <h2 className="font-serif text-4xl font-bold text-white sm:text-5xl">
           Antes de continuar
         </h2>
 
-        <p className="mx-auto mt-4 max-w-2xl text-white/70">
+        <p className="mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-white/70">
           Lee cuidadosamente el reglamento del campamento. Estas normas nos ayudarán a vivir este
           tiempo con orden, respeto y propósito.
         </p>
@@ -502,7 +502,7 @@ function CTASection() {
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href="/registro"
-            className="inline-flex items-center justify-center rounded-sm bg-white px-8 py-3 text-sm font-semibold uppercase tracking-wider transition hover:bg-white/90"
+            className="inline-flex items-center justify-center rounded-sm bg-white px-8 py-3 text-base font-semibold uppercase tracking-wider transition hover:bg-white/90"
             style={{ color: CBG.navy }}
           >
             Registrarme
@@ -510,14 +510,14 @@ function CTASection() {
 
           <Link
             href="/reglamento"
-            className="inline-flex items-center justify-center rounded-sm border border-white/30 px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/10"
+            className="inline-flex items-center justify-center rounded-sm border border-white/30 px-8 py-3 text-base font-semibold uppercase tracking-wider text-white transition hover:bg-white/10"
           >
             Leer reglamento
           </Link>
 
           <Link
             href="/bienvenida"
-            className="inline-flex items-center justify-center rounded-sm border border-white/30 px-8 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/10"
+            className="inline-flex items-center justify-center rounded-sm border border-white/30 px-8 py-3 text-base font-semibold uppercase tracking-wider text-white transition hover:bg-white/10"
           >
             Bienvenida
           </Link>
@@ -533,15 +533,15 @@ function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h4 className="font-serif text-lg font-bold text-white">JÓVENES CBG</h4>
-            <p className="mt-2 text-sm text-white/50">Campamento 2026</p>
+            <h4 className="font-serif text-xl font-bold text-white">JÓVENES CBG</h4>
+            <p className="mt-2 text-base text-white/50">Campamento 2026</p>
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white/50">
+            <h4 className="text-base font-semibold uppercase tracking-wider text-white/50">
               Navegación
             </h4>
-            <ul className="mt-3 space-y-2 text-sm text-white/50">
+            <ul className="mt-3 space-y-2 text-base text-white/50">
               <li>
                 <Link href="/bienvenida" className="hover:text-white">
                   Inicio
@@ -566,19 +566,19 @@ function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white/50">
+            <h4 className="text-base font-semibold uppercase tracking-wider text-white/50">
               Contacto
             </h4>
-            <ul className="mt-3 space-y-2 text-sm text-white/50">
+            <ul className="mt-3 space-y-2 text-base text-white/50">
               <li>WhatsApp: 0985 194953</li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white/50">
+            <h4 className="text-base font-semibold uppercase tracking-wider text-white/50">
               Redes
             </h4>
-            <div className="mt-3 flex gap-4">
+            <div className="mt-3 flex gap-4 text-base">
               <a href="#" className="text-white/50 hover:text-white">
                 Instagram
               </a>
@@ -589,7 +589,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-8 text-center text-xs text-white/30">
+        <div className="mt-12 border-t border-white/10 pt-8 text-center text-sm text-white/30">
           © 2026 Jóvenes CBG. Todos los derechos reservados.
         </div>
       </div>
@@ -600,7 +600,7 @@ function Footer() {
 /* ─── Main Page ─── */
 export default function CampamentoPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white text-[17px] md:text-[18px]">
       <Header />
       <HeroBanner />
       <CategoryNav />
