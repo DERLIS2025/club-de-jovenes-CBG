@@ -20,11 +20,6 @@ type Remera = {
   imagen: string;
 };
 
-type Dia = {
-  dia: string;
-  actividades: string[];
-};
-
 const TALLAS = ["S", "M", "L", "XL", "XXL"];
 
 const REMERAS: Remera[] = [
@@ -46,12 +41,6 @@ const REMERAS: Remera[] = [
     precio: 100000,
     imagen: "/campamento/remera-oficial.jpg",
   },
-];
-
-const CRONOGRAMA: Dia[] = [
-  { dia: "Viernes", actividades: ["Llegada", "Apertura", "Cena", "Plenaria 1"] },
-  { dia: "Sábado", actividades: ["Devocional", "Juegos", "Talleres", "Plenaria 2", "Fogata"] },
-  { dia: "Domingo", actividades: ["Devocional", "Culto", "Almuerzo", "Cierre"] },
 ];
 
 const WHATSAPP_NUMBER = "595985194953";
@@ -102,7 +91,6 @@ function CategoryNav() {
 
   const sectionLinks = [
     { label: "Remeras", href: "#remeras" },
-    { label: "Cronograma", href: "#cronograma" },
     { label: "Lugar", href: "#lugar" },
     { label: "Video", href: "#video" },
   ];
@@ -277,53 +265,6 @@ function RemerasSection() {
                   Reservar por WhatsApp
                 </a>
               </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CronogramaSection() {
-  return (
-    <section id="cronograma" className="bg-white py-14 sm:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2
-          className="mb-8 text-3xl font-semibold leading-tight sm:mb-10 sm:text-5xl"
-          style={{ color: CBG.text }}
-        >
-          Cronograma
-        </h2>
-
-        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-3 sm:overflow-visible sm:px-0 sm:pb-0">
-          {CRONOGRAMA.map((bloque) => (
-            <article
-              key={bloque.dia}
-              className="min-w-[78%] max-w-[78%] snap-start rounded-sm border border-[#e5e5e5] p-5 sm:min-w-0 sm:max-w-none sm:p-6"
-              style={{ backgroundColor: CBG.cream }}
-            >
-              <h3 className="text-xl font-semibold sm:text-2xl" style={{ color: CBG.navy }}>
-                {bloque.dia}
-              </h3>
-
-              <ul className="mt-4 space-y-3">
-                {bloque.actividades.map((actividad, i) => (
-                  <li
-                    key={actividad}
-                    className="flex items-center gap-3 text-sm sm:text-base"
-                    style={{ color: CBG.textMuted }}
-                  >
-                    <span
-                      className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-medium text-white"
-                      style={{ backgroundColor: CBG.navy }}
-                    >
-                      {i + 1}
-                    </span>
-                    {actividad}
-                  </li>
-                ))}
-              </ul>
             </article>
           ))}
         </div>
@@ -574,7 +515,6 @@ export default function CampamentoPage() {
       <CategoryNav />
       <TemaSection />
       <RemerasSection />
-      <CronogramaSection />
       <LugarSection />
       <VideoSection />
       <CTASection />
