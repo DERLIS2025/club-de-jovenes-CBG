@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Header from "@/components/Header";
 
 const CBG = {
@@ -53,6 +53,9 @@ const MAPS_EMBED_URL =
 const YOUTUBE_VIDEO_ID = "_EpTnktKT-o";
 const YOUTUBE_EMBED_URL = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`;
 
+const HERO_VIDEO_URL = "/videos/campamento-informativo.mp4";
+const HERO_POSTER_URL = "/campamento/campamento-video-poster.jpg";
+
 function getWhatsAppUrl(producto: string, talla: string): string {
   const message = `Hola! Quiero reservar la ${producto} en talla ${talla} para el Campamento CBG 2026.`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -63,21 +66,90 @@ function formatPrice(gs: number): string {
 }
 
 function HeroBanner() {
-  const [heroSrc, setHeroSrc] = useState("/campamento-hero.jpg");
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [soundEnabled, setSoundEnabled] = useState(false);
+
+  const toggleSound = async () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (soundEnabled) {
+      video.muted = true;
+      setSoundEnabled(false);
+      return;
+    }
+
+    video.muted = false;
+    video.volume = 1;
+
+    try {
+      await video.play();
+      setSoundEnabled(true);
+    } catch {
+      video.muted = true;
+      setSoundEnabled(false);
+    }
+  };
 
   return (
-    <section className="relative h-[250px] w-full overflow-hidden bg-[#0f1f33] sm:h-[420px] lg:h-[560px]">
-      <img
-        src={heroSrc}
-        alt="Campamento 2026"
-        className="absolute inset-0 h-full w-full object-cover object-left sm:object-center"
-        onError={() => {
-          if (heroSrc !== "/campamento/campamento-hero.jpg") {
-            setHeroSrc("/campamento/campamento-hero.jpg");
-          }
-        }}
-      />
-      <div className="absolute inset-0 bg-black/5" />
+    <section className="relative h-[360px] w-full overflow-hidden bg-[#0f1f33] sm:h-[520px] lg:h-[620px]">
+      <video
+        ref={videoRef}
+        className="absolute inset-0 h-full w-full object-cover object-center"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster={HERO_POSTER_URL}
+      >
+        <source src={HERO_VIDEO_URL} type="video/mp4" />
+      </video>
+
+      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/25 to-black/55" />
+
+      <div className="relative z-10 flex h-full items-center">
+        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl text-white">
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70 sm:text-sm">
+              Campamento 2026
+            </p>
+
+            <h1 className="mt-4 text-3xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
+              Bienvenida al Campamento Kavaju
+            </h1>
+
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/80 sm:text-lg">
+              Mirá el video informativo con la bienvenida, reglas principales y una introducción al
+              lugar donde viviremos este tiempo juntos.
+            </p>
+
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <button
+                type="button"
+                onClick={toggleSound}
+                className="inline-flex items-center justify-center rounded-sm bg-white px-6 py-3 text-sm font-semibold uppercase tracking-wider text-[#1e3a5c] transition hover:bg-white/90 sm:text-base"
+              >
+                {soundEnabled ? "Silenciar video" : "Activar sonido"}
+              </button>
+
+              <Link
+                href="/registro"
+                className="inline-flex items-center justify-center rounded-sm border border-white/35 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/10 sm:text-base"
+              >
+                Registrarme
+              </Link>
+
+              <Link
+                href="/reglamento"
+                className="inline-flex items-center justify-center rounded-sm border border-white/35 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/10 sm:text-base"
+              >
+                Leer reglamento
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
