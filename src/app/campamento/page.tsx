@@ -25,7 +25,7 @@ const TALLAS = ["S", "M", "L", "XL", "XXL"];
 const REMERAS: Remera[] = [
   {
     id: "oficial-1",
-    nombre: "Remera oficial del campamento",
+    nombre: "Remera oficial Gracia Camp 2026",
     precio: 100000,
     imagen: "/campamento/remera-oficial.jpg",
   },
@@ -240,19 +240,19 @@ function RemerasSection() {
             className="mt-3 text-3xl font-semibold leading-tight sm:text-5xl"
             style={{ color: CBG.text }}
           >
-            Remeras oficiales
+            Remera oficial del campamento
           </h2>
 
           <p className="mt-2 max-w-3xl text-sm leading-relaxed sm:text-base" style={{ color: CBG.textMuted }}>
-            Elegí tu talle y reservá por WhatsApp.
+            Elegí tu talle y reservá la remera oficial de Gracia Camp por WhatsApp.
           </p>
         </div>
 
-        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
+        <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:mx-0 sm:grid sm:grid-cols-[minmax(0,420px)_1fr] sm:items-start sm:overflow-visible sm:px-0 sm:pb-0">
           {REMERAS.map((remera) => (
             <article
               key={remera.id}
-              className="group min-w-[78%] max-w-[78%] snap-start rounded-sm border border-[#D9DDD1] bg-white p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-md sm:min-w-0 sm:max-w-none sm:p-3"
+              className="group min-w-[78%] max-w-[78%] snap-start rounded-sm border border-[#D9DDD1] bg-white p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-md sm:min-w-0 sm:w-full sm:max-w-[420px] sm:p-3"
             >
               <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-[#F7F5EF]">
                 <img
@@ -270,6 +270,10 @@ function RemerasSection() {
                 <h3 className="text-lg font-semibold leading-tight sm:text-2xl" style={{ color: CBG.text }}>
                   {remera.nombre}
                 </h3>
+
+                <p className="mt-2 text-sm leading-relaxed" style={{ color: CBG.textMuted }}>
+                  Diseño oficial del campamento, disponible por tiempo limitado.
+                </p>
 
                 <div className="mt-3 flex items-end justify-between gap-3">
                   <p className="text-xl font-semibold sm:text-2xl" style={{ color: CBG.text }}>
@@ -312,7 +316,7 @@ function RemerasSection() {
                   className="mt-4 flex w-full items-center justify-center rounded-sm py-3 text-xs font-semibold uppercase tracking-wider text-white transition hover:opacity-90 sm:mt-5 sm:py-3 sm:text-sm"
                   style={{ backgroundColor: CBG.navy }}
                 >
-                  Reservar por WhatsApp
+                  Reservar mi talle por WhatsApp
                 </a>
               </div>
             </article>
