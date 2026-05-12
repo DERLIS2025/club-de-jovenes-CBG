@@ -29,18 +29,6 @@ const REMERAS: Remera[] = [
     precio: 100000,
     imagen: "/campamento/remera-oficial.jpg",
   },
-  {
-    id: "oficial-2",
-    nombre: "Remera oficial del campamento",
-    precio: 100000,
-    imagen: "/campamento/remera-oficial.jpg",
-  },
-  {
-    id: "oficial-3",
-    nombre: "Remera oficial del campamento",
-    precio: 100000,
-    imagen: "/campamento/remera-oficial.jpg",
-  },
 ];
 
 const WHATSAPP_NUMBER = "595985194953";
@@ -106,7 +94,7 @@ function HeroBanner() {
       className="relative w-full overflow-hidden bg-[#10261D]"
       aria-label="Banner principal del Campamento de Jóvenes CBG"
     >
-      <div className="relative flex min-h-[180px] w-full items-center justify-center bg-[#F7F5EF] px-4 py-5 sm:min-h-[320px] sm:px-8 sm:py-8 lg:min-h-[460px]">
+      <div className="relative flex min-h-[150px] w-full items-center justify-center bg-[#F7F5EF] px-4 py-4 sm:min-h-[260px] sm:px-8 sm:py-6 lg:min-h-[360px]">
         {activeSlide.type === "image" ? (
           <picture>
             {activeSlide.mobileSrc ? (
@@ -116,13 +104,13 @@ function HeroBanner() {
             <img
               src={activeSlide.desktopSrc}
               alt={activeSlide.alt}
-              className="mx-auto h-auto max-h-[180px] w-full max-w-[1280px] object-contain sm:max-h-[320px] lg:max-h-[460px]"
+              className="mx-auto h-auto max-h-[150px] w-full max-w-[1050px] object-contain sm:max-h-[260px] lg:max-h-[360px]"
               loading="eager"
             />
           </picture>
         ) : (
           <video
-            className="mx-auto h-auto max-h-[180px] w-full max-w-[1280px] object-contain sm:max-h-[320px] lg:max-h-[460px]"
+            className="mx-auto h-auto max-h-[150px] w-full max-w-[1050px] object-contain sm:max-h-[260px] lg:max-h-[360px]"
             autoPlay
             muted
             loop
@@ -170,13 +158,13 @@ function CategoryNav() {
 
   return (
     <div className="border-b border-[#D9DDD1] bg-white">
-      <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-2 sm:flex sm:flex-wrap sm:justify-center sm:gap-3">
           {pageLinks.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="rounded-sm bg-[#183A2B] px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider text-white transition hover:opacity-90 sm:px-6 sm:text-base"
+              className="rounded-sm bg-[#183A2B] px-4 py-2.5 text-center text-xs font-semibold uppercase tracking-wider text-white transition hover:opacity-90 sm:px-5 sm:text-sm"
             >
               {item.label}
             </Link>
@@ -191,10 +179,10 @@ function CategoryNav() {
 function TemaSection() {
   return (
     <section className="relative overflow-hidden" style={{ backgroundColor: CBG.cream }}>
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-6xl">
         <div className="grid lg:grid-cols-2">
           <div
-            className="flex items-center px-6 py-12 sm:px-12 sm:py-16 lg:px-16"
+            className="flex items-center px-5 py-9 sm:px-9 sm:py-12 lg:px-12"
             style={{ backgroundColor: CBG.navy }}
           >
             <div>
@@ -202,12 +190,12 @@ function TemaSection() {
                 Tema Central
               </p>
 
-              <h2 className="mt-4 text-3xl font-semibold leading-tight text-white sm:text-5xl">
+              <h2 className="mt-3 text-2xl font-semibold leading-tight text-white sm:text-4xl">
                 Una fe examinada, una vida rendida a Cristo
               </h2>
 
-              <blockquote className="mt-6 border-l-2 border-[#7A835C] pl-5 text-white/80">
-                <p className="text-base italic sm:text-xl">
+              <blockquote className="mt-4 border-l-2 border-[#7A835C] pl-4 text-white/80">
+                <p className="text-sm italic sm:text-base">
                   &ldquo;Examinaos a vosotros mismos si estáis en la fe.&rdquo;
                 </p>
                 <footer className="mt-2 text-xs font-medium uppercase tracking-[0.2em] text-white/55 sm:text-sm">
@@ -217,11 +205,11 @@ function TemaSection() {
             </div>
           </div>
 
-          <div className="relative min-h-[240px] overflow-hidden sm:min-h-[300px] lg:min-h-0">
+          <div className="relative min-h-[200px] overflow-hidden sm:min-h-[240px] lg:min-h-0">
             <img
               src="/campamento-bg.jpg"
               alt="Imagen del campamento"
-              className="h-full min-h-[240px] w-full object-cover sm:min-h-[300px]"
+              className="h-full min-h-[200px] w-full object-cover sm:min-h-[240px]"
             />
           </div>
         </div>
@@ -238,9 +226,9 @@ function RemerasSection() {
   };
 
   return (
-    <section id="remeras" className="bg-white py-14 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-8 sm:mb-12">
+    <section id="remeras" className="bg-white py-10 sm:py-14">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-6 sm:mb-8">
           <p
             className="text-xs font-medium uppercase tracking-[0.25em] sm:text-base"
             style={{ color: CBG.gold }}
@@ -249,13 +237,13 @@ function RemerasSection() {
           </p>
 
           <h2
-            className="mt-3 text-3xl font-semibold leading-tight sm:text-6xl"
+            className="mt-3 text-3xl font-semibold leading-tight sm:text-5xl"
             style={{ color: CBG.text }}
           >
             Remeras oficiales
           </h2>
 
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed sm:text-lg" style={{ color: CBG.textMuted }}>
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed sm:text-base" style={{ color: CBG.textMuted }}>
             Elegí tu talle y reservá por WhatsApp.
           </p>
         </div>
@@ -264,13 +252,13 @@ function RemerasSection() {
           {REMERAS.map((remera) => (
             <article
               key={remera.id}
-              className="group min-w-[84%] max-w-[84%] snap-start rounded-sm border border-[#D9DDD1] bg-white p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-lg sm:min-w-0 sm:max-w-none sm:p-4"
+              className="group min-w-[78%] max-w-[78%] snap-start rounded-sm border border-[#D9DDD1] bg-white p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-md sm:min-w-0 sm:max-w-none sm:p-3"
             >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-sm bg-[#F7F5EF]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-[#F7F5EF]">
                 <img
                   src={remera.imagen}
                   alt={remera.nombre}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  className="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-105"
                 />
 
                 <div className="absolute left-3 top-3 rounded-full bg-white px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-[#183A2B] shadow-sm sm:left-4 sm:top-4 sm:px-4 sm:py-1.5 sm:text-sm">
@@ -278,13 +266,13 @@ function RemerasSection() {
                 </div>
               </div>
 
-              <div className="mt-4 sm:mt-5">
-                <h3 className="text-xl font-semibold leading-tight sm:text-3xl" style={{ color: CBG.text }}>
+              <div className="mt-3 sm:mt-4">
+                <h3 className="text-lg font-semibold leading-tight sm:text-2xl" style={{ color: CBG.text }}>
                   {remera.nombre}
                 </h3>
 
-                <div className="mt-4 flex items-end justify-between gap-3">
-                  <p className="text-2xl font-semibold sm:text-3xl" style={{ color: CBG.text }}>
+                <div className="mt-3 flex items-end justify-between gap-3">
+                  <p className="text-xl font-semibold sm:text-2xl" style={{ color: CBG.text }}>
                     {formatPrice(remera.precio)}
                   </p>
                   <p className="text-[10px] font-medium uppercase tracking-wider sm:text-sm" style={{ color: CBG.gold }}>
@@ -292,7 +280,7 @@ function RemerasSection() {
                   </p>
                 </div>
 
-                <div className="mt-4 sm:mt-5">
+                <div className="mt-3 sm:mt-4">
                   <p className="mb-2 text-xs font-medium uppercase tracking-wider sm:text-sm" style={{ color: CBG.textMuted }}>
                     Elegí tu talle
                   </p>
@@ -321,7 +309,7 @@ function RemerasSection() {
                   href={getWhatsAppUrl(remera.nombre, selectedSizes[remera.id] || "M")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-5 flex w-full items-center justify-center rounded-sm py-3 text-xs font-semibold uppercase tracking-wider text-white transition hover:opacity-90 sm:mt-6 sm:py-4 sm:text-lg"
+                  className="mt-4 flex w-full items-center justify-center rounded-sm py-3 text-xs font-semibold uppercase tracking-wider text-white transition hover:opacity-90 sm:mt-5 sm:py-3 sm:text-sm"
                   style={{ backgroundColor: CBG.navy }}
                 >
                   Reservar por WhatsApp
@@ -337,18 +325,18 @@ function RemerasSection() {
 
 function LugarSection() {
   return (
-    <section id="lugar" className="py-14 sm:py-16" style={{ backgroundColor: CBG.cream }}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="lugar" className="py-8 sm:py-10" style={{ backgroundColor: CBG.cream }}>
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <div className="rounded-sm border border-[#D9DDD1] bg-white p-5 sm:p-8">
+          <div className="rounded-sm border border-[#D9DDD1] bg-white p-5 sm:p-6">
             <h2
-              className="text-3xl font-semibold leading-tight sm:text-5xl"
+              className="text-2xl font-semibold leading-tight sm:text-4xl"
               style={{ color: CBG.text }}
             >
               Lugar del campamento
             </h2>
 
-            <div className="mt-6 space-y-4">
+            <div className="mt-5 space-y-3">
               <div>
                 <p
                   className="text-xs font-medium uppercase tracking-wider sm:text-sm"
@@ -356,7 +344,7 @@ function LugarSection() {
                 >
                   Nombre
                 </p>
-                <p className="mt-1 text-base font-medium sm:text-xl" style={{ color: CBG.text }}>
+                <p className="mt-1 text-sm font-medium sm:text-base" style={{ color: CBG.text }}>
                   Campamento Kavaju - Palabra de Vida
                 </p>
               </div>
@@ -368,7 +356,7 @@ function LugarSection() {
                 >
                   Dirección
                 </p>
-                <p className="mt-1 text-base font-medium sm:text-xl" style={{ color: CBG.text }}>
+                <p className="mt-1 text-sm font-medium sm:text-base" style={{ color: CBG.text }}>
                   Ver ubicación exacta en Google Maps
                 </p>
               </div>
@@ -380,7 +368,7 @@ function LugarSection() {
                 >
                   Ciudad
                 </p>
-                <p className="mt-1 text-base font-medium sm:text-xl" style={{ color: CBG.text }}>
+                <p className="mt-1 text-sm font-medium sm:text-base" style={{ color: CBG.text }}>
                   Atyrá, Paraguay
                 </p>
               </div>
@@ -390,15 +378,15 @@ function LugarSection() {
               href={MAPS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center justify-center rounded-sm border border-[#183A2B] px-5 py-3 text-sm font-medium uppercase tracking-wider text-[#183A2B] transition hover:bg-[#183A2B] hover:text-white sm:px-7 sm:text-base"
+              className="mt-5 inline-flex items-center justify-center rounded-sm border border-[#183A2B] px-5 py-2.5 text-xs font-medium uppercase tracking-wider text-[#183A2B] transition hover:bg-[#183A2B] hover:text-white sm:px-6 sm:text-sm"
             >
               Ver en Google Maps
             </a>
           </div>
 
-          <div className="rounded-sm border border-[#D9DDD1] bg-white p-5 sm:p-8">
+          <div className="rounded-sm border border-[#D9DDD1] bg-white p-5 sm:p-6">
             <h2
-              className="text-3xl font-semibold leading-tight sm:text-5xl"
+              className="text-2xl font-semibold leading-tight sm:text-4xl"
               style={{ color: CBG.text }}
             >
               Mapa
@@ -422,10 +410,10 @@ function LugarSection() {
 
 function VideoSection() {
   return (
-    <section id="video" className="bg-white py-14 sm:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="video" className="bg-white py-10 sm:py-12">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <h2
-          className="mb-6 text-3xl font-semibold leading-tight sm:text-5xl"
+          className="mb-5 text-2xl font-semibold leading-tight sm:text-4xl"
           style={{ color: CBG.text }}
         >
           Video informativo
@@ -447,18 +435,18 @@ function VideoSection() {
 
 function CTASection() {
   return (
-    <section className="py-14 sm:py-16" style={{ backgroundColor: CBG.navy }}>
-      <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-semibold leading-tight text-white sm:text-5xl">
+    <section className="py-8 sm:py-10" style={{ backgroundColor: CBG.navy }}>
+      <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
+        <h2 className="text-2xl font-semibold leading-tight text-white sm:text-4xl">
           Antes de continuar
         </h2>
 
-        <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-white/70 sm:text-lg">
+        <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-white/70 sm:text-base">
           Lee cuidadosamente el reglamento del campamento. Estas normas nos ayudarán a vivir este
           tiempo con orden, respeto y propósito.
         </p>
 
-        <div className="mt-8 grid gap-3 sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-4">
+        <div className="mt-6 grid gap-3 sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-3">
           <Link
             href="/bienvenida"
             className="inline-flex items-center justify-center rounded-sm border border-white/30 px-6 py-3 text-sm font-medium uppercase tracking-wider text-white transition hover:bg-white/10 sm:px-8 sm:text-base"
@@ -488,8 +476,8 @@ function CTASection() {
 
 function Footer() {
   return (
-    <footer className="py-10 sm:py-12" style={{ backgroundColor: "#10261D" }}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <footer className="py-8 sm:py-10" style={{ backgroundColor: "#10261D" }}>
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           <div>
             <h4 className="text-lg font-semibold text-white sm:text-xl">JÓVENES CBG</h4>
@@ -571,7 +559,7 @@ function Footer() {
 
 export default function CampamentoPage() {
   return (
-    <div className="min-h-screen bg-white text-[15px] antialiased sm:text-[16px] md:text-[17px]">
+    <div className="min-h-screen bg-white text-sm antialiased sm:text-[15px]">
       <Header />
       <HeroBanner />
       <CategoryNav />
