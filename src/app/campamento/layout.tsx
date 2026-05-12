@@ -1,35 +1,42 @@
 import type { Metadata } from "next";
 
+const title = "Gracia Camp 2026 | Jóvenes CBG";
+const description =
+  "Campamento 2026 de Jóvenes CBG. Por gracia somos salvos — Efesios 2:8.";
+const siteUrl = "https://jovenescbg.vercel.app";
+const pageUrl = `${siteUrl}/campamento`;
+const imageUrl = `${siteUrl}/og/gracia-camp-whatsapp-v5.jpg`;
+
 export const metadata: Metadata = {
-  title: "Gracia Camp 2026 | Jóvenes CBG",
-  description:
-    "Campamento 2026 de Jóvenes CBG. Por gracia somos salvos — Efesios 2:8.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
   alternates: {
-    canonical: "/campamento",
+    canonical: pageUrl,
   },
   openGraph: {
-    title: "Gracia Camp 2026 | Jóvenes CBG",
-    description:
-      "Campamento 2026 de Jóvenes CBG. Por gracia somos salvos — Efesios 2:8.",
-    url: "https://jovenescbg.vercel.app/campamento",
+    title,
+    description,
+    url: pageUrl,
     siteName: "Jóvenes CBG",
     type: "website",
     locale: "es_PY",
     images: [
       {
-        url: "https://jovenescbg.vercel.app/og/gracia-camp-whatsapp.png",
+        url: imageUrl,
+        secureUrl: imageUrl,
         width: 1200,
         height: 630,
         alt: "Gracia Camp 2026 - Jóvenes CBG",
+        type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gracia Camp 2026 | Jóvenes CBG",
-    description:
-      "Campamento 2026 de Jóvenes CBG. Por gracia somos salvos — Efesios 2:8.",
-    images: ["https://jovenescbg.vercel.app/og/gracia-camp-whatsapp.png"],
+    title,
+    description,
+    images: [imageUrl],
   },
 };
 
