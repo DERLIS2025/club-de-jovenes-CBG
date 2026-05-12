@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "@/components/Header";
 
 const CBG = {
@@ -76,74 +76,29 @@ function formatPrice(gs: number): string {
 }
 
 function HeroBanner() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeSlide = HERO_SLIDES[activeIndex] ?? HERO_SLIDES[0];
+  const activeSlide = HERO_SLIDES[0];
 
-  useEffect(() => {
-    if (HERO_SLIDES.length <= 1) return;
-
-    const interval = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % HERO_SLIDES.length);
-    }, 7000);
-
-    return () => window.clearInterval(interval);
-  }, []);
+  if (!activeSlide || activeSlide.type !== "image") {
+    return null;
+  }
 
   return (
     <section
-      className="relative w-full overflow-hidden bg-[#10261D]"
+      className="w-full overflow-hidden border-b border-[#D9DDD1] bg-[#F7F5EF]"
       aria-label="Banner principal del Campamento de Jóvenes CBG"
     >
-      <div className="relative flex min-h-[150px] w-full items-center justify-center bg-[#F7F5EF] px-4 py-4 sm:min-h-[260px] sm:px-8 sm:py-6 lg:min-h-[360px]">
-        {activeSlide.type === "image" ? (
-          <picture>
-            {activeSlide.mobileSrc ? (
-              <source media="(max-width: 767px)" srcSet={activeSlide.mobileSrc} />
-            ) : null}
-
-            <img
-              src={activeSlide.desktopSrc}
-              alt={activeSlide.alt}
-              className="mx-auto h-auto max-h-[150px] w-full max-w-[1050px] object-contain sm:max-h-[260px] lg:max-h-[360px]"
-              loading="eager"
-            />
-          </picture>
-        ) : (
-          <video
-            className="mx-auto h-auto max-h-[150px] w-full max-w-[1050px] object-contain sm:max-h-[260px] lg:max-h-[360px]"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={activeSlide.poster}
-            aria-label={activeSlide.alt}
-          >
-            <source src={activeSlide.src} type="video/mp4" />
-          </video>
-        )}
-
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20" />
-
-        {HERO_SLIDES.length > 1 ? (
-          <div className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2">
-            {HERO_SLIDES.map((slide, index) => (
-              <button
-                key={`${slide.type}-${index}`}
-                type="button"
-                onClick={() => setActiveIndex(index)}
-                className={`h-2.5 rounded-full transition-all ${
-                  activeIndex === index
-                    ? "w-8 bg-white"
-                    : "w-2.5 bg-white/50 hover:bg-white/80"
-                }`}
-                aria-label={`Ver banner ${index + 1}`}
-                aria-current={activeIndex === index ? "true" : undefined}
-              />
-            ))}
-          </div>
+      <picture className="block w-full">
+        {activeSlide.mobileSrc ? (
+          <source media="(max-width: 767px)" srcSet={activeSlide.mobileSrc} />
         ) : null}
-      </div>
+
+        <img
+          src={activeSlide.desktopSrc}
+          alt={activeSlide.alt}
+          className="block h-auto w-full object-contain object-center"
+          loading="eager"
+        />
+      </picture>
     </section>
   );
 }
