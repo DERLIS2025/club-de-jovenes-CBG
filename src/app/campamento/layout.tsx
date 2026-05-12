@@ -5,7 +5,7 @@ const description =
   "Campamento 2026 de Jóvenes CBG. Por gracia somos salvos — Efesios 2:8.";
 const siteUrl = "https://jovenescbg.vercel.app";
 const pageUrl = `${siteUrl}/campamento`;
-const imageUrl = `${siteUrl}/og/gracia-camp-whatsapp-v5.jpg`;
+const imageUrl = `${siteUrl}/og/gracia-camp-2026-whatsapp.jpg`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
