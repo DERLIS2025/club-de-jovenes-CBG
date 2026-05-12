@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 
 const CBG = {
@@ -53,8 +53,36 @@ const MAPS_EMBED_URL =
 const YOUTUBE_VIDEO_ID = "_EpTnktKT-o";
 const YOUTUBE_EMBED_URL = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`;
 
-const HERO_VIDEO_URL = "/videos/campamento-informativo.mp4";
-const HERO_POSTER_URL = "/campamento/campamento-video-poster.jpg";
+type HeroImageSlide = {
+  type: "image";
+  desktopSrc: string;
+  mobileSrc?: string;
+  alt: string;
+};
+
+type HeroVideoSlide = {
+  type: "video";
+  src: string;
+  poster: string;
+  alt: string;
+};
+
+type HeroSlide = HeroImageSlide | HeroVideoSlide;
+
+const HERO_SLIDES: HeroSlide[] = [
+  {
+    type: "video",
+    src: "/videos/campamento-bg.mp4",
+    poster: "/campamento-hero.jpg",
+    alt: "Video principal del Campamento Kavaju",
+  },
+  {
+    type: "image",
+    desktopSrc: "/campamento-hero.jpg",
+    mobileSrc: "/campamento-hero.jpg",
+    alt: "Banner del Campamento de Jóvenes CBG 2026",
+  },
+];
 
 function getWhatsAppUrl(producto: string, talla: string): string {
   const message = `Hola! Quiero reservar la ${producto} en talla ${talla} para el Campamento CBG 2026.`;
@@ -66,89 +94,73 @@ function formatPrice(gs: number): string {
 }
 
 function HeroBanner() {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [soundEnabled, setSoundEnabled] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeSlide = HERO_SLIDES[activeIndex] ?? HERO_SLIDES[0];
 
-  const toggleSound = async () => {
-    const video = videoRef.current;
-    if (!video) return;
+  useEffect(() => {
+    if (HERO_SLIDES.length <= 1) return;
 
-    if (soundEnabled) {
-      video.muted = true;
-      setSoundEnabled(false);
-      return;
-    }
+    const interval = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % HERO_SLIDES.length);
+    }, 7000);
 
-    video.muted = false;
-    video.volume = 1;
-
-    try {
-      await video.play();
-      setSoundEnabled(true);
-    } catch {
-      video.muted = true;
-      setSoundEnabled(false);
-    }
-  };
+    return () => window.clearInterval(interval);
+  }, []);
 
   return (
-    <section className="relative h-[360px] w-full overflow-hidden bg-[#0f1f33] sm:h-[520px] lg:h-[620px]">
-      <video
-        ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover object-center"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster={HERO_POSTER_URL}
-      >
-        <source src={HERO_VIDEO_URL} type="video/mp4" />
-      </video>
+    <section
+      className="relative w-full overflow-hidden bg-[#0f1f33]"
+      aria-label="Banner principal del Campamento de Jóvenes CBG"
+    >
+      <div className="relative h-[300px] w-full sm:h-[460px] lg:h-[620px]">
+        {activeSlide.type === "image" ? (
+          <picture>
+            {activeSlide.mobileSrc ? (
+              <source media="(max-width: 767px)" srcSet={activeSlide.mobileSrc} />
+            ) : null}
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/25 to-black/55" />
+            <img
+              src={activeSlide.desktopSrc}
+              alt={activeSlide.alt}
+              className="h-full w-full object-cover object-center"
+              loading="eager"
+            />
+          </picture>
+        ) : (
+          <video
+            className="h-full w-full object-cover object-center"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={activeSlide.poster}
+            aria-label={activeSlide.alt}
+          >
+            <source src={activeSlide.src} type="video/mp4" />
+          </video>
+        )}
 
-      <div className="relative z-10 flex h-full items-center">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl text-white">
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70 sm:text-sm">
-              Campamento 2026
-            </p>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20" />
 
-            <h1 className="mt-4 text-3xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
-              Bienvenida al Campamento Kavaju
-            </h1>
-
-            <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/80 sm:text-lg">
-              Mirá el video informativo con la bienvenida, reglas principales y una introducción al
-              lugar donde viviremos este tiempo juntos.
-            </p>
-
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+        {HERO_SLIDES.length > 1 ? (
+          <div className="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2">
+            {HERO_SLIDES.map((slide, index) => (
               <button
+                key={`${slide.type}-${index}`}
                 type="button"
-                onClick={toggleSound}
-                className="inline-flex items-center justify-center rounded-sm bg-white px-6 py-3 text-sm font-semibold uppercase tracking-wider text-[#1e3a5c] transition hover:bg-white/90 sm:text-base"
-              >
-                {soundEnabled ? "Silenciar video" : "Activar sonido"}
-              </button>
-
-              <Link
-                href="/registro"
-                className="inline-flex items-center justify-center rounded-sm border border-white/35 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/10 sm:text-base"
-              >
-                Registrarme
-              </Link>
-
-              <Link
-                href="/reglamento"
-                className="inline-flex items-center justify-center rounded-sm border border-white/35 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white transition hover:bg-white/10 sm:text-base"
-              >
-                Leer reglamento
-              </Link>
-            </div>
+                onClick={() => setActiveIndex(index)}
+                className={`h-2.5 rounded-full transition-all ${
+                  activeIndex === index
+                    ? "w-8 bg-white"
+                    : "w-2.5 bg-white/50 hover:bg-white/80"
+                }`}
+                aria-label={`Ver banner ${index + 1}`}
+                aria-current={activeIndex === index ? "true" : undefined}
+              />
+            ))}
           </div>
-        </div>
+        ) : null}
       </div>
     </section>
   );
