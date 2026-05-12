@@ -71,16 +71,10 @@ type HeroSlide = HeroImageSlide | HeroVideoSlide;
 
 const HERO_SLIDES: HeroSlide[] = [
   {
-    type: "video",
-    src: "/videos/campamento-bg.mp4",
-    poster: "/campamento-hero.jpg",
-    alt: "Video principal del Campamento Kavaju",
-  },
-  {
     type: "image",
-    desktopSrc: "/campamento-hero.jpg",
-    mobileSrc: "/campamento-hero.jpg",
-    alt: "Banner del Campamento de Jóvenes CBG 2026",
+    desktopSrc: "/banners/gracia-camp-banner-desktop.png",
+    mobileSrc: "/banners/gracia-camp-banner-mobile.png",
+    alt: "Gracia Camp - Por gracia somos salvos - Efesios 2:8",
   },
 ];
 
@@ -112,7 +106,7 @@ function HeroBanner() {
       className="relative w-full overflow-hidden bg-[#0f1f33]"
       aria-label="Banner principal del Campamento de Jóvenes CBG"
     >
-      <div className="relative h-[300px] w-full sm:h-[460px] lg:h-[620px]">
+      <div className="relative flex min-h-[180px] w-full items-center justify-center bg-[#f8f6f1] px-4 py-5 sm:min-h-[320px] sm:px-8 sm:py-8 lg:min-h-[460px]">
         {activeSlide.type === "image" ? (
           <picture>
             {activeSlide.mobileSrc ? (
@@ -122,13 +116,13 @@ function HeroBanner() {
             <img
               src={activeSlide.desktopSrc}
               alt={activeSlide.alt}
-              className="h-full w-full object-cover object-center"
+              className="mx-auto h-auto max-h-[180px] w-full max-w-[1280px] object-contain sm:max-h-[320px] lg:max-h-[460px]"
               loading="eager"
             />
           </picture>
         ) : (
           <video
-            className="h-full w-full object-cover object-center"
+            className="mx-auto h-auto max-h-[180px] w-full max-w-[1280px] object-contain sm:max-h-[320px] lg:max-h-[460px]"
             autoPlay
             muted
             loop
