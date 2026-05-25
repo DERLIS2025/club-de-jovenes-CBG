@@ -212,12 +212,12 @@ function RemerasSection() {
                 key={remera.id}
                 className="group min-w-[82%] max-w-[82%] snap-start rounded-sm border border-[#D9DDD1] bg-white p-3 shadow-sm transition hover:-translate-y-1 hover:shadow-md sm:min-w-0 sm:w-full sm:max-w-[420px]"
               >
-                <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-[#F7F5EF]">
-                  <img
-                    src={remera.imagen}
-                    alt={remera.nombre}
-                    className="h-full w-full object-contain p-3 transition duration-500 group-hover:scale-105"
-                  />
+                <div className="relative h-[520px] overflow-hidden rounded-sm bg-[#F7F5EF]">
+  <img
+    src={remera.imagen}
+    alt={remera.nombre}
+    className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105"
+  />
 
                   <div className="absolute left-3 top-3 rounded-full bg-white px-3 py-1 text-[10px] font-medium uppercase tracking-wider text-[#183A2B] shadow-sm">
                     Oficial
