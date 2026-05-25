@@ -12,7 +12,7 @@ function getTimeRemaining() {
   const now = new Date();
   const diff = target.getTime() - now.getTime();
 
-  if (diff <= 0)
+  if (diff <= 0) {
     return {
       days: 0,
       hours: 0,
@@ -20,6 +20,7 @@ function getTimeRemaining() {
       seconds: 0,
       expired: true,
     };
+  }
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor(
@@ -28,11 +29,18 @@ function getTimeRemaining() {
   const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-  return { days, hours, minutes, seconds, expired: false };
+  return {
+    days,
+    hours,
+    minutes,
+    seconds,
+    expired: false,
+  };
 }
 
 export default function Header() {
   const pathname = usePathname();
+
   const [time, setTime] = useState(() => getTimeRemaining());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -54,33 +62,20 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#e5e5e5] bg-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-        
-        {/* LOGO + TITULO */}
+
+        {/* LOGO */}
         <Link
           href="/campamento"
-          className="flex shrink-0 items-center gap-3"
+          className="flex shrink-0 items-center"
         >
           <Image
             src="/logo.png"
             alt="Gracia Camp"
-            width={55}
-            height={55}
+            width={80}
+            height={80}
             priority
             className="object-contain"
           />
-
-          <div className="flex flex-col leading-none">
-            <span
-              className="text-base font-black tracking-tight sm:text-xl"
-              style={{ color: CBG_NAVY }}
-            >
-              JÓVENES CBG
-            </span>
-
-            <span className="text-[10px] uppercase tracking-[0.25em] text-gray-500">
-              Gracia Camp
-            </span>
-          </div>
         </Link>
 
         {/* NAV DESKTOP */}
@@ -106,9 +101,10 @@ export default function Header() {
 
         {/* DERECHA */}
         <div className="flex items-center gap-3">
+
           {!time.expired && (
             <div className="hidden items-center gap-4 rounded-2xl border border-gray-100 bg-white px-5 py-3 shadow-lg md:inline-flex">
-              
+
               {/* ICONO */}
               <div className="flex flex-col items-center">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
@@ -120,7 +116,14 @@ export default function Header() {
                     strokeWidth="3"
                     fill="none"
                   />
-                  <circle cx="20" cy="20" r="14" fill="#fef3c7" />
+
+                  <circle
+                    cx="20"
+                    cy="20"
+                    r="14"
+                    fill="#fef3c7"
+                  />
+
                   <line
                     x1="20"
                     y1="20"
@@ -130,6 +133,7 @@ export default function Header() {
                     strokeWidth="2.5"
                     strokeLinecap="round"
                   />
+
                   <line
                     x1="20"
                     y1="20"
@@ -139,12 +143,19 @@ export default function Header() {
                     strokeWidth="2"
                     strokeLinecap="round"
                   />
-                  <circle cx="20" cy="20" r="2" fill="#dc2626" />
+
+                  <circle
+                    cx="20"
+                    cy="20"
+                    r="2"
+                    fill="#dc2626"
+                  />
 
                   <path
                     d="M28 28 Q30 24 32 26 Q34 22 30 20 Q28 18 26 22 Q24 26 28 28Z"
                     fill="#f59e0b"
                   />
+
                   <path
                     d="M29 27 Q30 24 31 25 Q32 23 30 22 Q29 21 28 23 Q27 25 29 27Z"
                     fill="#ef4444"
@@ -166,7 +177,10 @@ export default function Header() {
                   { value: time.minutes, label: "mins." },
                   { value: time.seconds, label: "segs." },
                 ].map((item, index) => (
-                  <div key={item.label} className="flex items-center gap-2">
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-2"
+                  >
                     <div className="text-center">
                       <div className="text-3xl font-bold leading-none tabular-nums text-[#1a1a1a]">
                         {String(item.value).padStart(2, "0")}
@@ -215,6 +229,7 @@ export default function Header() {
       {isMenuOpen && (
         <div className="border-t border-[#e5e5e5] bg-white px-4 py-4 lg:hidden">
           <nav className="mx-auto grid max-w-7xl gap-2">
+
             {navItems.map((item) => {
               const isActive = pathname === item.href;
 
