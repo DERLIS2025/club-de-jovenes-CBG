@@ -27,7 +27,7 @@ const REMERAS: Remera[] = [
     id: "oficial-1",
     nombre: "Remera oficial Gracia Camp 2026",
     precio: 100000,
-    imagen: "/campamento/remera-oficial.jpg",
+    imagen: "/campamento/remera-nueva.png",
   },
 ];
 
